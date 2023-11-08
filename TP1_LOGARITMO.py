@@ -35,7 +35,7 @@ def cifrado_atbash(cadena):
             cadena_codificada += letra
     return cadena_codificada
 
-def ventana_funcional():
+def crear_ventana_cifrados():
     # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
     def CESAR_intermedio():
         if type(entrada_clave.get()) != int:
@@ -147,7 +147,7 @@ def crear_ventana_principal():
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
     bienvenida.config(font=("Calibri" , 15) )
     
-    continuar = Button(raiz1 , text = "CONTINUAR" , command = ventana_funcional) 
+    continuar = Button(raiz1 , text = "CONTINUAR" , command = crear_ventana_cifrados)
     continuar.config(bg="red" , bd=10 , relief="raised" , font=("Arial" , 15))
     continuar.config(cursor="hand2")
     
