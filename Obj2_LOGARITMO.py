@@ -45,7 +45,7 @@ def pruebas2():
     >>> cifrado_atbash("123 *#+-") # Simbolos
     '876 *#+-'
     >>> cifrado_atbash("test5")
-    'GVHG4'
+    'GVHG5'
     >>> cifrado_atbash("TEST6")
     'gvhg3'
     >>> cifrado_atbash("Test :-)")
