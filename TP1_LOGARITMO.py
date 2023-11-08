@@ -137,25 +137,25 @@ def ventana_funcional():
     resultado_final.pack(padx=20 , pady=0)
 
 # # Creamos la primer ventana (1)
-
-raiz1 = Tk()
-raiz1.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
-raiz1.geometry("700x450")
-raiz1.resizable(0,0)
-raiz1.iconbitmap(r"C:\Users\Usuario\OneDrive\Escritorio\Felipe\Algoritmos y Programación\TP 1\icono.ico")
-
-bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
-bienvenida.config(font=("Calibri" , 15) )
-
-continuar = Button(raiz1 , text = "CONTINUAR" , command = ventana_funcional) 
-continuar.config(bg="red" , bd=10 , relief="raised" , font=("Arial" , 15))
-continuar.config(cursor="hand2")
-
-integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
-integrantes.config(font=("Calibri" , 12))
-
-bienvenida.pack(pady=50)
-continuar.pack(padx=150 , pady=0)
-integrantes.pack(pady=10)
-
-raiz1.mainloop()
+def crear_ventana_principal():
+    raiz1 = Tk()
+    raiz1.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
+    raiz1.geometry("700x450")
+    raiz1.resizable(0,0)
+    raiz1.iconbitmap(r"C:\Users\Usuario\OneDrive\Escritorio\Felipe\Algoritmos y Programación\TP 1\icono.ico")
+    
+    bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
+    bienvenida.config(font=("Calibri" , 15) )
+    
+    continuar = Button(raiz1 , text = "CONTINUAR" , command = ventana_funcional) 
+    continuar.config(bg="red" , bd=10 , relief="raised" , font=("Arial" , 15))
+    continuar.config(cursor="hand2")
+    
+    integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
+    integrantes.config(font=("Calibri" , 12))
+    
+    bienvenida.pack(pady=50)
+    continuar.pack(padx=150 , pady=0)
+    integrantes.pack(pady=10)
+    
+    raiz1.mainloop()
