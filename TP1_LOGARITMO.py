@@ -37,7 +37,7 @@ def cifrado_atbash(cadena):
 
 def crear_ventana_cifrados():
     # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
-    def validar_cesar()):
+    def validar_cesar():
         if type(entrada_clave.get()) != int:
             resultado = "CLAVE INVALIDA"
             devolver_valor(resultado, True)
