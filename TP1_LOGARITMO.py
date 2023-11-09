@@ -159,3 +159,32 @@ def crear_ventana_principal():
     integrantes.pack(pady=10)
     
     raiz1.mainloop()
+    
+# # Funcion que define los parametros de la ventana principal
+def definir_parametros():
+    parametros = {}
+    titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
+    tamaño = "700x450"
+    parametros["ventana_principal"] = (titulo , tamaño)
+
+    tipo_letra_bienvenida = "Calibri"
+    tamaño_letra_bienvenida = 15
+    parametros["bienvenida_config"] = (tipo_letra_bienvenida , tamaño_letra_bienvenida)
+
+    color_continuar = "red"
+    borde_continuar = 10
+    tipo_borde_continuar = "raised"
+    tipo_cursor = "hand2"
+    tipo_letra_continuar = "Arial"
+    tamaño_letra_continuar = 15
+    parametros["continuar_config"] = (color_continuar, borde_continuar, tipo_borde_continuar, tipo_cursor, tipo_letra_continuar, tamaño_letra_continuar)
+
+    tipo_letra_integrantes = "Calibri"
+    tamaño_letra_integrantes = 12
+    parametros["integrantes_config"] = (tipo_letra_integrantes, tamaño_letra_integrantes)
+    return parametros
+
+def main():
+    crear_ventana_principal(definir_parametros())
+
+main()
