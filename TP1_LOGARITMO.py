@@ -37,7 +37,7 @@ def cifrado_atbash(cadena):
 
 def crear_ventana_cifrados():
     # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
-    def CESAR_intermedio():
+    def validar_cesar()):
         if type(entrada_clave.get()) != int:
             resultado = "CLAVE INVALIDA"
             devolver_valor(resultado, True)
@@ -57,7 +57,7 @@ def crear_ventana_cifrados():
             resultado = cifrado_cesar(mensaje,clave)
             devolver_valor(resultado, False)
             
-    def des_CESAR_intermedio():
+    def validar_cesar2():
         if type(entrada_clave.get()) != int:
             resultado = "CLAVE INVALIDA"
             devolver_valor(resultado, True)
@@ -77,7 +77,7 @@ def crear_ventana_cifrados():
             resultado = cifrado_cesar(mensaje,clave)
             devolver_valor(resultado, False)
     
-    def ATBASH_intermedio():
+    def validar_atbash():
         mensaje = entrada_mensaje.get()
         if not mensaje:
             resultado = "FALTA EL MENSAJE"
@@ -109,13 +109,13 @@ def crear_ventana_cifrados():
     entrada_clave.place(width=200 , height=40)
     
     # Ponemos los botones de cifrado y decifrado (3)
-    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=CESAR_intermedio)
+    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_cesar)
     
-    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=ATBASH_intermedio)
+    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_atbash)
     
-    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=des_CESAR_intermedio)
+    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_cesar2)
     
-    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=ATBASH_intermedio)
+    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_atbash)
     
     resultado_final = Label(raiz2 , text=" ")
     
@@ -137,13 +137,13 @@ def crear_ventana_cifrados():
     resultado_final.pack(padx=20 , pady=0)
 
 # # Creamos la primer ventana (1)
-def crear_ventana_principal():
+def crear_ventana_principal(parametros):
     raiz1 = Tk()
-    raiz1.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
-    raiz1.geometry("700x450")
+    raiz1.title(parametros["ventana_principal"][0])
+    raiz1.geometry(parametros["ventana_principal"][1])
     raiz1.resizable(0,0)
     raiz1.iconbitmap(r"C:\Users\Usuario\OneDrive\Escritorio\Felipe\Algoritmos y Programación\TP 1\icono.ico")
-    
+
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
     bienvenida.config(font=("Calibri" , 15) )
     
