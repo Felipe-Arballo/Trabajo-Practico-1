@@ -137,6 +137,7 @@ def crear_ventana_cifrados():
     resultado_final.pack(padx=20 , pady=0)
 
 # # Creamos la primer ventana (1)
+# Cuando recibe la funcion los parametros los usamos asi? (parametros["ventana_principal"][0]) o les damos nombre primero?
 def crear_ventana_principal(parametros):
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
