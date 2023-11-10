@@ -35,57 +35,53 @@ def cifrado_atbash(cadena):
             cadena_codificada += letra
     return cadena_codificada
 
+# # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
+def validar_cesar(entrada_clave, entrada_mensaje):
+    if not entrada_clave.get().isnumeric():
+        resultado = "CLAVE NO NUMERO"
+        devolver_valor(resultado, True)
+    clave = int(entrada_clave.get())
+    mensaje = entrada_mensaje.get()
+    if clave < 0:
+        resultado = "CLAVE INVALIDA"
+        devolver_valor(resultado, True)
+    elif not mensaje: 
+        resultado = "FALTA EL MENSAJE"
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_cesar(mensaje,clave)
+        devolver_valor(resultado, False)
+
+def validar_cesar2(entrada_clave, entrada_mensaje): 
+    if not entrada_clave.get().isnumeric():
+        resultado = "CLAVE NO NUMERO"
+        devolver_valor(resultado, True)
+    clave = -int(entrada_clave.get())
+    mensaje = entrada_mensaje.get()
+    if clave > 0:
+        resultado = "CLAVE INVALIDA"
+        devolver_valor(resultado, True)
+    elif not mensaje: 
+        resultado = "FALTA EL MENSAJE"
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_cesar(mensaje,clave)
+        devolver_valor(resultado, False)
+
+def validar_atbash(entrada_mensaje):
+    mensaje = entrada_mensaje.get()
+    if not mensaje:
+        resultado = "FALTA EL MENSAJE"
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_atbash(mensaje)
+        devolver_valor(resultado, False)
+        
+# # Falta hacer una funcion que devuelva el resultado dentro de la ventana 2
+def devolver_valor(resultado, error):
+        print(resultado, error)
+
 def crear_ventana_cifrados():
-    # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
-    def validar_cesar():
-        if type(entrada_clave.get()) != int:
-            resultado = "CLAVE INVALIDA"
-            devolver_valor(resultado, True)
-
-        clave = int(entrada_clave.get())
-        mensaje = entrada_mensaje.get()
-
-        if clave < 0:
-            resultado = "CLAVE INVALIDA"
-            devolver_valor(resultado, True)
-
-        elif not mensaje: 
-            resultado = "FALTA EL MENSAJE"
-            devolver_valor(resultado, True)
-
-        else:
-            resultado = cifrado_cesar(mensaje,clave)
-            devolver_valor(resultado, False)
-            
-    def validar_cesar2():
-        if type(entrada_clave.get()) != int:
-            resultado = "CLAVE INVALIDA"
-            devolver_valor(resultado, True)
-
-        clave = -int(entrada_clave.get())
-        mensaje = entrada_mensaje.get()
-
-        if clave > 0:
-            resultado = "CLAVE INVALIDA"
-            devolver_valor(resultado, True)
-
-        elif not mensaje: 
-            resultado = "FALTA EL MENSAJE"
-            devolver_valor(resultado, True)
-            
-        else:
-            resultado = cifrado_cesar(mensaje,clave)
-            devolver_valor(resultado, False)
-    
-    def validar_atbash():
-        mensaje = entrada_mensaje.get()
-        if not mensaje:
-            resultado = "FALTA EL MENSAJE"
-            devolver_valor(resultado, True)
-        else:
-            resultado = cifrado_atbash(mensaje)
-            devolver_valor(resultado, False)
-    
     # # Creamos la segunda ventana (2)
     raiz1.destroy()
     raiz2 = Tk()
@@ -109,13 +105,13 @@ def crear_ventana_cifrados():
     entrada_clave.place(width=200 , height=40)
     
     # Ponemos los botones de cifrado y decifrado (3)
-    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_cesar)
+    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
     
-    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_atbash)
+    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_atbash(entrada_mensaje))
     
-    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_cesar2)
+    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
     
-    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=validar_atbash)
+    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_atbash(entrada_mensaje))
     
     resultado_final = Label(raiz2 , text=" ")
     
