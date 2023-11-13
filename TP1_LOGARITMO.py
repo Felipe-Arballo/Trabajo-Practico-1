@@ -179,7 +179,59 @@ def definir_parametros():
     tipo_letra_integrantes = "Calibri"
     tamaño_letra_integrantes = 12
     parametros["integrantes_config"] = (tipo_letra_integrantes, tamaño_letra_integrantes)
+    
     return parametros
+
+def definir_parametros_cifrados():
+    parametros_cifrados = {}
+    
+    titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
+    tamaño = "700x450"
+    parametros_cifrados["ventana_cifrados"] = (titulo , tamaño)
+    
+    tipo_letra_mensaje = "Arial"
+    tamaño_letra_mensaje = 12
+    parametros_cifrados["mensaje_config"] = (tipo_letra_mensaje , tamaño_letra_mensaje)
+    
+    color_entrada_mensaje = "pink"
+    width_entrada_mensaje = 200
+    height_entrada_mensaje = 40
+    parametros_cifrados["entrada_mensaje_config"] = (color_entrada_mensaje , width_entrada_mensaje , height_entrada_mensaje)
+    
+    tipo_letra_clave = "Arial"
+    tamaño_letra_clave = 12
+    parametros_cifrados["clave_config"] = (tipo_letra_clave , tamaño_letra_clave)
+    
+    color_entrada_clave = "pink"
+    width_entrada_clave = 200
+    height_entrada_clave = 40
+    parametros_cifrados["entrada_clave_config"] = (color_entrada_clave , width_entrada_clave , height_entrada_clave)
+    
+    texto_boton_1 = "Cifrado CESAR"
+    borde_boton_1 = 10
+    relieve_boton_1 = "ridge"
+    cursor_boton_1 = "hand2"
+    parametros_cifrados["boton_1_config"] = (texto_boton_1 , borde_boton_1 , relieve_boton_1 , cursor_boton_1)
+    
+    texto_boton_2 = "Cifrado ATBASH"
+    borde_boton_2 = 10
+    relieve_boton_2 = "ridge"
+    cursor_boton_2 = "hand2"
+    parametros_cifrados["boton_2_config"] = (texto_boton_2 , borde_boton_2 , relieve_boton_2 , cursor_boton_2)
+    
+    texto_boton_3 = "Descifrado CESAR"
+    borde_boton_3 = 10
+    relieve_boton_3 = "ridge"
+    cursor_boton_3 = "hand2"
+    parametros_cifrados["boton_3_config"] = (texto_boton_3 , borde_boton_3 , relieve_boton_3 , cursor_boton_3)
+    
+    texto_boton_4 = "Descifrado ATBASH"
+    borde_boton_4 = 10
+    relieve_boton_4 = "ridge"
+    cursor_boton_4 = "hand2"
+    parametros_cifrados["boton_4_config"] = (texto_boton_4 , borde_boton_4 , relieve_boton_4 , cursor_boton_4)
+    
+    return parametros_cifrados
 
 def main():
     crear_ventana_principal(definir_parametros())
