@@ -79,6 +79,7 @@ def validar_atbash(entrada_mensaje):
 
 def crear_ventana_cifrados():
     # # Creamos la segunda ventana (2)
+    global raiz2
     raiz1.destroy()
     raiz2 = Tk()
     raiz2.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
@@ -122,6 +123,7 @@ def crear_ventana_cifrados():
 # # Creamos la primer ventana (1)
 # Cuando recibe la funcion los parametros los usamos asi? (parametros["ventana_principal"][0]) o les damos nombre primero?
 def crear_ventana_principal(parametros):
+    global raiz1
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
