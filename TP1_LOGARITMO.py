@@ -76,10 +76,6 @@ def validar_atbash(entrada_mensaje):
     else:
         resultado = cifrado_atbash(mensaje)
         devolver_valor(resultado, False)
-        
-# # Falta hacer una funcion que devuelva el resultado dentro de la ventana 2
-def devolver_valor(resultado, error):
-        print(resultado, error)
 
 def crear_ventana_cifrados():
     # # Creamos la segunda ventana (2)
@@ -113,15 +109,6 @@ def crear_ventana_cifrados():
     
     descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_atbash(entrada_mensaje))
     
-    resultado_final = Label(raiz2 , text=" ")
-    
-    # Funcion que muestra los errores o el resultado (5)
-    def devolver_valor(resultado, error):
-        if not error:
-            resultado_final.config(bg="grey" , bd=5 , relief="raised" , text="Resultado: " + resultado , width=50 , height=50 , font=("Arial" , 15))
-        else:
-            resultado_final.config(bg="red" , bd=5 , relief="raised" , text= resultado , width=50 , height=50 , font=("Arial" , 15))
-    
     texto_mensaje.pack()
     entrada_mensaje.pack()
     texto_clave.pack()
@@ -130,7 +117,7 @@ def crear_ventana_cifrados():
     cifrado_ATBASH.pack(padx=20 , pady=15)
     descifrado_CESAR.pack(padx=20 , pady=15)
     descifrado_ATBASH.pack(padx=20 , pady=15)
-    resultado_final.pack(padx=20 , pady=0)
+
 
 # # Creamos la primer ventana (1)
 # Cuando recibe la funcion los parametros los usamos asi? (parametros["ventana_principal"][0]) o les damos nombre primero?
@@ -156,7 +143,15 @@ def crear_ventana_principal(parametros):
     integrantes.pack(pady=10)
     
     raiz1.mainloop()
-    
+
+def devolver_valor(resultado, error):
+    resultado_final = Label(raiz2 , name = "resultado")
+    if not error:
+            resultado_final.config(bg="grey" , bd=5 , relief="raised" , text="Resultado: " + resultado , width=50 , height=50 , font=("Arial" , 15))
+    else:
+        resultado_final.config(bg="red" , bd=5 , relief="raised" , text= resultado , width=50 , height=50 , font=("Arial" , 15))
+    resultado_final.pack()
+
 # # Funcion que define los parametros de la ventana principal
 def definir_parametros():
     parametros = {}
