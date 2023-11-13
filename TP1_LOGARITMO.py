@@ -1,4 +1,5 @@
 from tkinter import*
+import doctest
 
 # # Importamos tkinter y debajo estan los cifrados de los objetivos anterirores
 def cifrado_cesar(cadena, clave):
@@ -13,6 +14,30 @@ def cifrado_cesar(cadena, clave):
             cadena_modificada += letra
         indice += 1
     return cadena_modificada
+
+def pruebas_CESAR():
+    '''
+    >>> cifrado_cesar("HOLA MUNDO", 3) # Mayusculas
+    'KROD PXQGR'
+    >>> cifrado_cesar("hola mundo", 3) # Minusculas
+    'krod pxqgr'
+    >>> cifrado_cesar("1234567890: NUM", 1) # Numeros
+    '23456789:1: OVN'
+    >>> cifrado_cesar("hola: -+`¡'!/10", 10) # Simbolos
+    "ryvk: -+`¡'!/;:"
+    >>> cifrado_cesar("numeros: 192837465", 0) # Clave 0
+    'numeros: 192837465'
+    >>> cifrado_cesar("ho123l2a num-3 -2", 2)
+    'jq345n4c pwo-5 -4'
+    >>> cifrado_cesar("h0l@ & ad10$" , 3) # Letras, numeros y simbolos
+    'k3o@ & dg43$'
+    >>> cifrado_cesar("HOLA MUNDO", 30000) # Clave muy alta
+    '畸畿畼畱 畽疅畾畴畿'
+    >>> cifrado_cesar(" ", 2) # Cadena de espacio
+    ' '
+    >>> cifrado_cesar("", 2) # Cadena vacia
+    ''
+    '''
 
 def cifrado_atbash(cadena):
     abecedario = "abcdefghijklmnñopqrstuvwxyz"
@@ -34,6 +59,32 @@ def cifrado_atbash(cadena):
         else:
             cadena_codificada += letra
     return cadena_codificada
+
+def pruebas_ATBASH():
+    '''
+    >>> cifrado_atbash("HOLA MUNDO") # Mayusculas
+    'sloz ñfnwl'
+    >>> cifrado_atbash("hola mundo") # Minusculas
+    'SLOZ ÑFNWL'
+    >>> cifrado_atbash("0123456789: Num") # Números
+    '9876543210: nFÑ'
+    >>> cifrado_atbash("123 *#+-") # Simbolos
+    '876 *#+-'
+    >>> cifrado_atbash("test5")
+    'GVHG5'
+    >>> cifrado_atbash("TEST6")
+    'gvhg3'
+    >>> cifrado_atbash("Test :-)")
+    'gVHG :-)'
+    >>> cifrado_atbash("sloz ñfnwl") # Desencriptado
+    'HOLA MUNDO'
+    >>> cifrado_atbash(" ") # Cadena de espacio
+    ' '
+    >>> cifrado_atbash("") # Cadena vacia
+    ''
+    '''
+
+# print(doctest.testmod())
 
 # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
 def validar_cesar(entrada_clave, entrada_mensaje):
