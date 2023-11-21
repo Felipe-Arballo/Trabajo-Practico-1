@@ -136,7 +136,7 @@ def crear_ventana_cifrados():
     raiz2.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
     raiz2.geometry("700x450")
     raiz2.resizable(0,0)
-    raiz2.iconbitmap(r"C:\Users\Usuario\OneDrive\Escritorio\Felipe\Algoritmos y Programación\TP 1\icono.ico")
+    raiz2.iconbitmap("TP1_LOGARITMO\icono.ico")
     
     texto_mensaje = Label(raiz2 , text = "Ingrese el mensaje a cifrar: ")
     texto_mensaje.config(padx=10 , pady=10 , font=("Arial" , 12))
@@ -179,7 +179,7 @@ def crear_ventana_principal(parametros):
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
     raiz1.resizable(0,0)
-    raiz1.iconbitmap(r"C:\Users\Usuario\OneDrive\Escritorio\Felipe\Algoritmos y Programación\TP 1\icono.ico")
+    raiz1.iconbitmap("TP1_LOGARITMO\icono.ico")
 
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
     bienvenida.config(font=("Calibri" , 15) )
