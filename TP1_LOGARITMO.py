@@ -130,27 +130,28 @@ def validar_atbash(entrada_mensaje):
 
 def crear_ventana_cifrados():
     # # Creamos la segunda ventana (2)
+    parametros = definir_parametros_cifrados()
     global raiz2
     raiz1.destroy()
     raiz2 = Tk()
-    raiz2.title("TP Grupal Parte 1 - Grupo: LOGARITMO")
-    raiz2.geometry("700x450")
+    raiz2.title(cargar_configuracion(parametros , "ventana_cifrados" , 0))
+    raiz2.geometry(cargar_configuracion(parametros , "ventana_cifrados" , 1))
     raiz2.resizable(0,0)
     raiz2.iconbitmap("TP1_LOGARITMO\icono.ico")
     
     texto_mensaje = Label(raiz2 , text = "Ingrese el mensaje a cifrar: ")
-    texto_mensaje.config(padx=10 , pady=10 , font=("Arial" , 12))
+    texto_mensaje.config(padx=10 , pady=10 , font=(cargar_configuracion(parametros , "mensaje_config" , 0) , cargar_configuracion(parametros , "mensaje_config" , 1)))
     
     entrada_mensaje = Entry(raiz2)
-    entrada_mensaje.config(bg="pink")
-    entrada_mensaje.place(width=200 , height=40)
+    entrada_mensaje.config(bg=cargar_configuracion(parametros , "entrada_mensaje_config" , 0))
+    entrada_mensaje.place(width=cargar_configuracion(parametros , "entrada_mensaje_config" , 1) , height=cargar_configuracion(parametros , "entrada_mensaje_config" , 2))
     
     texto_clave = Label(raiz2 , text = "Ingrese la clave del cifrado CESAR: ")
-    texto_clave.config(padx=10 , pady=10 , font=("Arial" , 12))
+    texto_clave.config(padx=10 , pady=10 , font=(cargar_configuracion(parametros , "clave_config" , 0) , cargar_configuracion(parametros , "clave_config" , 1)))
     
     entrada_clave = Entry(raiz2)
-    entrada_clave.config(bg="pink")
-    entrada_clave.place(width=200 , height=40)
+    entrada_clave.config(bg=cargar_configuracion(parametros , "entrada_clave_config" , 0))
+    entrada_clave.place(width=cargar_configuracion(parametros , "entrada_clave_config" , 1) , height=cargar_configuracion(parametros , "entrada_clave_config" , 2))
     
     # Ponemos los botones de cifrado y decifrado (3)
     cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
@@ -208,6 +209,7 @@ def devolver_valor(resultado, error):
 # # Funcion que define los parametros de la ventana principal
 def definir_parametros():
     parametros = {}
+    
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
     parametros["ventana_principal"] = (titulo , tamaño)
@@ -232,7 +234,7 @@ def definir_parametros():
 
 def definir_parametros_cifrados():
     parametros_cifrados = {}
-    
+
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
     parametros_cifrados["ventana_cifrados"] = (titulo , tamaño)
@@ -280,6 +282,9 @@ def definir_parametros_cifrados():
     parametros_cifrados["boton_4_config"] = (texto_boton_4 , borde_boton_4 , relieve_boton_4 , cursor_boton_4)
     
     return parametros_cifrados
+
+def cargar_configuracion(parametros , clave , valor):
+    return parametros[clave][valor]
 
 def main():
     crear_ventana_principal(definir_parametros())
