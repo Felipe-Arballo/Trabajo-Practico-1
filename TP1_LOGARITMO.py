@@ -7,6 +7,7 @@ numeros = "0123456789"
 clave_no_numero = "CLAVE NO NÚMERO"
 clave_invalida = "CLAVE INVÁLIDA"
 falta_mensaje = "FALTA EL MENSAJE"
+continuar = "CONTINUAR"
 
 # # Importamos tkinter y debajo estan los cifrados de los objetivos anterirores
 def cifrado_cesar(cadena, clave):
@@ -190,7 +191,7 @@ def crear_ventana_principal(parametros):
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
     bienvenida.config(font=(parametros["bienvenida_config"][0], parametros["bienvenida_config"][1]) )
     
-    continuar = Button(raiz1 , text = "CONTINUAR" , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
+    continuar = Button(raiz1 , text = continuar , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
     continuar.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
     
     integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
