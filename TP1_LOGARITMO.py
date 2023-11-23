@@ -190,7 +190,7 @@ def crear_ventana_principal(parametros):
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
     bienvenida.config(font=(parametros["bienvenida_config"][0], parametros["bienvenida_config"][1]) )
     
-    continuar = Button(raiz1 , text = "CONTINUAR" , command = crear_ventana_cifrados)
+    continuar = Button(raiz1 , text = "CONTINUAR" , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
     continuar.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
     
     integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
