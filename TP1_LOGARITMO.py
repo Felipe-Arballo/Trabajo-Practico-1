@@ -7,7 +7,6 @@ numeros = "0123456789"
 clave_no_numero = "CLAVE NO NÚMERO"
 clave_invalida = "CLAVE INVÁLIDA"
 falta_mensaje = "FALTA EL MENSAJE"
-continuar = "CONTINUAR"
 
 # # Importamos tkinter y debajo estan los cifrados de los objetivos anterirores
 def cifrado_cesar(cadena, clave):
@@ -143,31 +142,31 @@ def crear_ventana_cifrados(parametros):
     raiz2.geometry(parametros["ventana_cifrados"][1])
     raiz2.resizable(0,0)
     raiz2.iconbitmap("TP1_LOGARITMO//icono.ico")
-    
-    texto_mensaje = Label(raiz2 , text = "Ingrese el mensaje a cifrar: ")
-    texto_mensaje.config(padx=10 , pady=10 , font=(parametros["mensaje_config"][0] , parametros["mensaje_config"][1]))
-    
+
+    texto_mensaje = Label(raiz2 , text=parametros["mensaje_config"][0])
+    texto_mensaje.config(padx=10 , pady=10 , font=(parametros["mensaje_config"][1] , parametros["mensaje_config"][2]))
+
     entrada_mensaje = Entry(raiz2)
     entrada_mensaje.config(bg=parametros["entrada_mensaje_config"][0])
     entrada_mensaje.place(width=parametros["entrada_mensaje_config"][1] , height=parametros["entrada_mensaje_config"][2])
-    
-    texto_clave = Label(raiz2 , text = "Ingrese la clave del cifrado CESAR: ")
-    texto_clave.config(padx=10 , pady=10 , font=(parametros["clave_config"][0] , parametros["clave_config"][1]))
-    
+
+    texto_clave = Label(raiz2 , text=parametros["clave_config"][0])
+    texto_clave.config(padx=10 , pady=10 , font=(parametros["clave_config"][1] , parametros["clave_config"][2]))
+
     entrada_clave = Entry(raiz2)
     entrada_clave.config(bg=parametros["entrada_clave_config"][0])
     entrada_clave.place(width=parametros["entrada_clave_config"][1] , height=parametros["entrada_clave_config"][2])
-    
+
     # Ponemos los botones de cifrado y descifrado (3)
-    
-    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
-    
-    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
-    
-    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
-    
-    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
-    
+
+    cifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][0] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
+
+    cifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][1] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+
+    descifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][2] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
+
+    descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+
     texto_mensaje.pack()
     entrada_mensaje.pack()
     texto_clave.pack()
@@ -176,7 +175,6 @@ def crear_ventana_cifrados(parametros):
     cifrado_ATBASH.pack(padx=20 , pady=15)
     descifrado_CESAR.pack(padx=20 , pady=15)
     descifrado_ATBASH.pack(padx=20 , pady=15)
-
 
 # # Creamos la primer ventana (1)
 # Cuando recibe la funcion los parametros los usamos asi? (parametros["ventana_principal"][0]) o les damos nombre primero?
@@ -188,23 +186,23 @@ def crear_ventana_principal(parametros):
     raiz1.resizable(0,0)
     raiz1.iconbitmap("TP1_LOGARITMO//icono.ico")
 
-    bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
-    bienvenida.config(font=(parametros["bienvenida_config"][0], parametros["bienvenida_config"][1]) )
+    bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
+    bienvenida.config(font=(parametros["bienvenida_config"][1], parametros["bienvenida_config"][2]) )
     
-    continuar = Button(raiz1 , text = continuar , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
+    continuar = Button(raiz1 , text=parametros["continuar_config"][6] , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
     continuar.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
-    
-    integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
-    integrantes.config(font=(parametros["integrantes_config"][0] , parametros["integrantes_config"][1]))
-    
+
+    integrantes = Label(raiz1 , text=parametros["integrantes_config"][0])
+    integrantes.config(font=(parametros["integrantes_config"][1] , parametros["integrantes_config"][2]))
+
     bienvenida.pack(pady=50)
     continuar.pack(padx=150 , pady=0)
     integrantes.pack(pady=10)
-    
+
     raiz1.mainloop()
 
 def devolver_valor(resultado, error):
-    resultado_final = Label(raiz2 , name = "resultado")
+    resultado_final = Label(raiz2 , name = "#")
     if not error:
             resultado_final.config(bg="grey" , bd=5 , relief="raised" , text="Resultado: " + resultado , width=50 , height=50 , font=("Arial" , 15))
     else:
@@ -214,14 +212,15 @@ def devolver_valor(resultado, error):
 # # Funcion que define los parametros de la ventana principal
 def definir_parametros():
     parametros = {}
-    
+
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
     parametros["ventana_principal"] = (titulo , tamaño)
 
+    texto_bienvenida = "Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana."
     tipo_letra_bienvenida = "Calibri"
     tamaño_letra_bienvenida = 15
-    parametros["bienvenida_config"] = (tipo_letra_bienvenida , tamaño_letra_bienvenida)
+    parametros["bienvenida_config"] = (texto_bienvenida, tipo_letra_bienvenida, tamaño_letra_bienvenida)
 
     color_continuar = "red"
     borde_continuar = 10
@@ -229,12 +228,14 @@ def definir_parametros():
     tipo_cursor = "hand2"
     tipo_letra_continuar = "Arial"
     tamaño_letra_continuar = 15
-    parametros["continuar_config"] = (color_continuar, borde_continuar, tipo_borde_continuar, tipo_cursor, tipo_letra_continuar, tamaño_letra_continuar)
+    nombre_boton = "CONTINUAR"
+    parametros["continuar_config"] = (color_continuar, borde_continuar, tipo_borde_continuar, tipo_cursor, tipo_letra_continuar, tamaño_letra_continuar, nombre_boton)
 
+    texto_integrantes = " \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín"
     tipo_letra_integrantes = "Calibri"
     tamaño_letra_integrantes = 12
-    parametros["integrantes_config"] = (tipo_letra_integrantes, tamaño_letra_integrantes)
-    
+    parametros["integrantes_config"] = (texto_integrantes, tipo_letra_integrantes, tamaño_letra_integrantes)
+
     return parametros
 
 def definir_parametros_cifrados():
@@ -243,42 +244,38 @@ def definir_parametros_cifrados():
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
     parametros_cifrados["ventana_cifrados"] = (titulo , tamaño)
-    
+
+    texto_mensaje = "Ingrese el mensaje a cifrar: "
     tipo_letra_mensaje = "Arial"
     tamaño_letra_mensaje = 12
-    parametros_cifrados["mensaje_config"] = (tipo_letra_mensaje , tamaño_letra_mensaje)
-    
+    parametros_cifrados["mensaje_config"] = (texto_mensaje, tipo_letra_mensaje, tamaño_letra_mensaje)
+
     color_entrada_mensaje = "pink"
     width_entrada_mensaje = 200
     height_entrada_mensaje = 40
     parametros_cifrados["entrada_mensaje_config"] = (color_entrada_mensaje , width_entrada_mensaje , height_entrada_mensaje)
-    
+
+    texto_clave = "Ingrese la clave del cifrado CESAR: "
     tipo_letra_clave = "Arial"
     tamaño_letra_clave = 12
-    parametros_cifrados["clave_config"] = (tipo_letra_clave , tamaño_letra_clave)
-    
+    parametros_cifrados["clave_config"] = (texto_clave, tipo_letra_clave, tamaño_letra_clave)
+
     color_entrada_clave = "pink"
     width_entrada_clave = 200
     height_entrada_clave = 40
     parametros_cifrados["entrada_clave_config"] = (color_entrada_clave , width_entrada_clave , height_entrada_clave)
-    
+
     texto_boton_1 = "Cifrado CESAR"
-    parametros_cifrados["boton_1_config"] = (texto_boton_1)
-    
     texto_boton_2 = "Cifrado ATBASH"
-    parametros_cifrados["boton_2_config"] = (texto_boton_2)
-    
     texto_boton_3 = "Descifrado CESAR"
-    parametros_cifrados["boton_3_config"] = (texto_boton_3)
-    
     texto_boton_4 = "Descifrado ATBASH"
-    parametros_cifrados["boton_4_config"] = (texto_boton_4)
-    
+    parametros_cifrados["texto_boton"] = (texto_boton_1 , texto_boton_2 , texto_boton_3 , texto_boton_4)
+
     borde_boton = 10
     relieve_boton = "ridge"
     cursor_boton = "hand2"
     parametros_cifrados["design_boton"] = (borde_boton , relieve_boton , cursor_boton)
-    
+
     return parametros_cifrados
 
 def main():
