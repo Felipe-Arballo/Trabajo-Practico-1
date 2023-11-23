@@ -155,13 +155,13 @@ def crear_ventana_cifrados():
     
     # Ponemos los botones de cifrado y descifrado (3)
     
-    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
+    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
     
-    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
     
-    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
+    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
     
-    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
     
     texto_mensaje.pack()
     entrada_mensaje.pack()
@@ -258,28 +258,21 @@ def definir_parametros_cifrados():
     parametros_cifrados["entrada_clave_config"] = (color_entrada_clave , width_entrada_clave , height_entrada_clave)
     
     texto_boton_1 = "Cifrado CESAR"
-    borde_boton_1 = 10
-    relieve_boton_1 = "ridge"
-    cursor_boton_1 = "hand2"
-    parametros_cifrados["boton_1_config"] = (texto_boton_1 , borde_boton_1 , relieve_boton_1 , cursor_boton_1)
+    parametros_cifrados["boton_1_config"] = (texto_boton_1)
     
     texto_boton_2 = "Cifrado ATBASH"
-    borde_boton_2 = 10
-    relieve_boton_2 = "ridge"
-    cursor_boton_2 = "hand2"
-    parametros_cifrados["boton_2_config"] = (texto_boton_2 , borde_boton_2 , relieve_boton_2 , cursor_boton_2)
+    parametros_cifrados["boton_2_config"] = (texto_boton_2)
     
     texto_boton_3 = "Descifrado CESAR"
-    borde_boton_3 = 10
-    relieve_boton_3 = "ridge"
-    cursor_boton_3 = "hand2"
-    parametros_cifrados["boton_3_config"] = (texto_boton_3 , borde_boton_3 , relieve_boton_3 , cursor_boton_3)
+    parametros_cifrados["boton_3_config"] = (texto_boton_3)
     
     texto_boton_4 = "Descifrado ATBASH"
-    borde_boton_4 = 10
-    relieve_boton_4 = "ridge"
-    cursor_boton_4 = "hand2"
-    parametros_cifrados["boton_4_config"] = (texto_boton_4 , borde_boton_4 , relieve_boton_4 , cursor_boton_4)
+    parametros_cifrados["boton_4_config"] = (texto_boton_4)
+    
+    borde_boton = 10
+    relieve_boton = "ridge"
+    cursor_boton = "hand2"
+    parametros_cifrados["design_boton"] = (borde_boton , relieve_boton , cursor_boton)
     
     return parametros_cifrados
 
