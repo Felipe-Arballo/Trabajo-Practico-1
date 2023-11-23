@@ -134,33 +134,34 @@ def crear_ventana_cifrados():
     global raiz2
     raiz1.destroy()
     raiz2 = Tk()
-    raiz2.title(cargar_configuracion(parametros , "ventana_cifrados" , 0))
-    raiz2.geometry(cargar_configuracion(parametros , "ventana_cifrados" , 1))
+    raiz2.title(parametros["ventana_cifrados"][0])
+    raiz2.geometry(parametros["ventana_cifrados"][1])
     raiz2.resizable(0,0)
-    raiz2.iconbitmap("TP1_LOGARITMO\icono.ico")
+    raiz2.iconbitmap("TP1_LOGARITMO//icono.ico")
     
     texto_mensaje = Label(raiz2 , text = "Ingrese el mensaje a cifrar: ")
-    texto_mensaje.config(padx=10 , pady=10 , font=(cargar_configuracion(parametros , "mensaje_config" , 0) , cargar_configuracion(parametros , "mensaje_config" , 1)))
+    texto_mensaje.config(padx=10 , pady=10 , font=(parametros["mensaje_config"][0] , parametros["mensaje_config"][1]))
     
     entrada_mensaje = Entry(raiz2)
-    entrada_mensaje.config(bg=cargar_configuracion(parametros , "entrada_mensaje_config" , 0))
-    entrada_mensaje.place(width=cargar_configuracion(parametros , "entrada_mensaje_config" , 1) , height=cargar_configuracion(parametros , "entrada_mensaje_config" , 2))
+    entrada_mensaje.config(bg=parametros["entrada_mensaje_config"][0])
+    entrada_mensaje.place(width=parametros["entrada_mensaje_config"][1] , height=parametros["entrada_mensaje_config"][2])
     
     texto_clave = Label(raiz2 , text = "Ingrese la clave del cifrado CESAR: ")
-    texto_clave.config(padx=10 , pady=10 , font=(cargar_configuracion(parametros , "clave_config" , 0) , cargar_configuracion(parametros , "clave_config" , 1)))
+    texto_clave.config(padx=10 , pady=10 , font=(parametros["clave_config"][0] , parametros["clave_config"][1]))
     
     entrada_clave = Entry(raiz2)
-    entrada_clave.config(bg=cargar_configuracion(parametros , "entrada_clave_config" , 0))
-    entrada_clave.place(width=cargar_configuracion(parametros , "entrada_clave_config" , 1) , height=cargar_configuracion(parametros , "entrada_clave_config" , 2))
+    entrada_clave.config(bg=parametros["entrada_clave_config"][0])
+    entrada_clave.place(width=parametros["entrada_clave_config"][1] , height=parametros["entrada_clave_config"][2])
     
-    # Ponemos los botones de cifrado y decifrado (3)
-    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
+    # Ponemos los botones de cifrado y descifrado (3)
     
-    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_atbash(entrada_mensaje))
+    cifrado_CESAR = Button(raiz2 , text="Cifrado CESAR" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
     
-    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
+    cifrado_ATBASH = Button(raiz2 , text="Cifrado ATBASH" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
     
-    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=10 , relief="ridge" , cursor="hand2" , command=lambda: validar_atbash(entrada_mensaje))
+    descifrado_CESAR = Button(raiz2 , text="Descifrado CESAR" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
+    
+    descifrado_ATBASH = Button(raiz2 , text="Descifrado ATBASH" , bd=parametros["diseño_boton"][0] , relief=parametros["diseño_boton"][1] , cursor=parametros["diseño_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
     
     texto_mensaje.pack()
     entrada_mensaje.pack()
@@ -281,9 +282,6 @@ def definir_parametros_cifrados():
     parametros_cifrados["boton_4_config"] = (texto_boton_4 , borde_boton_4 , relieve_boton_4 , cursor_boton_4)
     
     return parametros_cifrados
-
-def cargar_configuracion(parametros , clave , valor):
-    return parametros[clave][valor]
 
 def main():
     crear_ventana_principal(definir_parametros())
