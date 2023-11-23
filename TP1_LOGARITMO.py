@@ -202,13 +202,28 @@ def crear_ventana_principal(parametros):
     raiz1.mainloop()
 
 def devolver_valor(resultado, error):
+    parametros = definir_parametros_resultado()
     resultado_final = Label(raiz2 , name = "#")
     if not error:
-            resultado_final.config(bg="grey" , bd=5 , relief="raised" , text="Resultado: " + resultado , width=50 , height=50 , font=("Arial" , 15))
+            resultado_final.config(bg=parametros["resultado_config"][1] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text=parametros["resultado_config"][4] + resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
     else:
-        resultado_final.config(bg="red" , bd=5 , relief="raised" , text= resultado , width=50 , height=50 , font=("Arial" , 15))
+        resultado_final.config(bg=parametros["resultado_config"][0] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text= resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
     resultado_final.pack()
 
+def definir_parametros_resultado():
+    parametros = {}
+    color_error = "red"
+    color_resultado = "grey"
+    borde = 5
+    relieve = "raised"
+    texto = "Resultado:"
+    width = 50
+    height = 50
+    tipo_letra = "Arial"
+    tamaño_letra = 15
+    parametros["resultado_config"] =(color_error, color_resultado, borde, relieve, texto, width, height, tipo_letra, tamaño_letra)
+    return parametros
+    
 # # Funcion que define los parametros de la ventana principal
 def definir_parametros():
     parametros = {}
