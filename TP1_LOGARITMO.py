@@ -133,9 +133,8 @@ def validar_atbash(entrada_mensaje):
         resultado = cifrado_atbash(mensaje)
         devolver_valor(resultado, False)
 
-def crear_ventana_cifrados():
+def crear_ventana_cifrados(parametros):
     # # Creamos la segunda ventana (2)
-    parametros = definir_parametros_cifrados()
     global raiz2
     raiz1.destroy()
     raiz2 = Tk()
