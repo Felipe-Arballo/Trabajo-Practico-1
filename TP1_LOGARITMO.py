@@ -1,6 +1,13 @@
 from tkinter import*
 import doctest
 
+# Strings varios para utilizar luego
+abecedario = "abcdefghijklmnñopqrstuvwxyz"
+numeros = "0123456789"
+clave_no_numero = "CLAVE NO NÚMERO"
+clave_invalida = "CLAVE INVÁLIDA"
+falta_mensaje = "FALTA EL MENSAJE"
+
 # # Importamos tkinter y debajo estan los cifrados de los objetivos anterirores
 def cifrado_cesar(cadena, clave):
     cadena_modificada = ""
@@ -40,9 +47,7 @@ def pruebas_CESAR():
     '''
 
 def cifrado_atbash(cadena):
-    abecedario = "abcdefghijklmnñopqrstuvwxyz"
     abecedario_invertido = abecedario[::-1]
-    numeros = "0123456789"
     numeros_invertido = numeros[::-1]
     cadena_codificada = ""
     for letra in cadena:
@@ -89,15 +94,15 @@ def pruebas_ATBASH():
 # # Funciones intermedias que señalan errores y mandan los datos a los cifrados (4)
 def validar_cesar(entrada_clave, entrada_mensaje):
     if not entrada_clave.get().isnumeric():
-        resultado = "CLAVE NO NUMERO"
+        resultado = clave_no_numero
         devolver_valor(resultado, True)
     clave = int(entrada_clave.get())
     mensaje = entrada_mensaje.get()
     if clave < 0:
-        resultado = "CLAVE INVALIDA"
+        resultado = clave_invalida
         devolver_valor(resultado, True)
     elif not mensaje: 
-        resultado = "FALTA EL MENSAJE"
+        resultado = falta_mensaje
         devolver_valor(resultado, True)
     else:
         resultado = cifrado_cesar(mensaje,clave)
@@ -105,15 +110,15 @@ def validar_cesar(entrada_clave, entrada_mensaje):
 
 def validar_cesar2(entrada_clave, entrada_mensaje): 
     if not entrada_clave.get().isnumeric():
-        resultado = "CLAVE NO NUMERO"
+        resultado = clave_no_numero
         devolver_valor(resultado, True)
     clave = -int(entrada_clave.get())
     mensaje = entrada_mensaje.get()
     if clave > 0:
-        resultado = "CLAVE INVALIDA"
+        resultado = clave_invalida
         devolver_valor(resultado, True)
     elif not mensaje: 
-        resultado = "FALTA EL MENSAJE"
+        resultado = falta_mensaje
         devolver_valor(resultado, True)
     else:
         resultado = cifrado_cesar(mensaje,clave)
@@ -122,7 +127,7 @@ def validar_cesar2(entrada_clave, entrada_mensaje):
 def validar_atbash(entrada_mensaje):
     mensaje = entrada_mensaje.get()
     if not mensaje:
-        resultado = "FALTA EL MENSAJE"
+        resultado = falta_mensaje
         devolver_valor(resultado, True)
     else:
         resultado = cifrado_atbash(mensaje)
