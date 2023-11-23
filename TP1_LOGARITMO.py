@@ -177,19 +177,19 @@ def crear_ventana_cifrados():
 def crear_ventana_principal(parametros):
     global raiz1
     raiz1 = Tk()
-    raiz1.title(cargar_configuracion(parametros, "ventana_principal", 0))
-    raiz1.geometry(cargar_configuracion(parametros, "ventana_principal", 1))
+    raiz1.title(parametros["ventana_principal"][0])
+    raiz1.geometry(parametros["ventana_principal"][1])
     raiz1.resizable(0,0)
     raiz1.iconbitmap("TP1_LOGARITMO\icono.ico")
 
     bienvenida = Label(raiz1 , text="Bienvenido a la aplicación de mensajes secretos del grupo LOGARITMO. \n Para continuar presione continuar, de lo contrario cierre la ventana.")
-    bienvenida.config(font=(cargar_configuracion(parametros, "bienvenida_config", 0 ), cargar_configuracion(parametros, "bienvenida_config", 1)) )
+    bienvenida.config(font=(parametros["bienvenida_config"][0], parametros["bienvenida_config"][1]) )
     
     continuar = Button(raiz1 , text = "CONTINUAR" , command = crear_ventana_cifrados)
-    continuar.config(bg=cargar_configuracion(parametros, "continuar_config", 0) , bd=cargar_configuracion(parametros, "continuar_config", 1), relief=cargar_configuracion(parametros, "continuar_config", 2), cursor=cargar_configuracion(parametros, "continuar_config", 3), font=(cargar_configuracion(parametros, "continuar_config", 4), cargar_configuracion(parametros, "continuar_config", 5)))
+    continuar.config(bg=parametros["continuar_config"][0]) , bd=parametros["continuar_config"][1]), relief=parametros["continuar_config"][2]), cursor=parametros["continuar_config"][3]), font=(parametros["continuar_config"][4]), parametros["continuar_config"][5])))
     
     integrantes = Label(raiz1 , text=" \n Construída por: \n - Arballo Felipe Antonio \n - Maldonado Aluhe Nahuel \n - Mancco Puma Osk'r Fabricio \n - Rojas Bravo Diego Ángel \n - Saladino Joaquín")
-    integrantes.config(font=(cargar_configuracion(parametros, "integrantes_config", 0) , cargar_configuracion(parametros, "integrantes_config", 1)))
+    integrantes.config(font=(parametros["integrantes_config"][0]) , parametros["integrantes_config"][1]))
     
     bienvenida.pack(pady=50)
     continuar.pack(padx=150 , pady=0)
