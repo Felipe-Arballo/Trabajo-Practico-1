@@ -295,3 +295,7 @@ def main():
 
 main()
 
+# Guardar los datos de la cuenta al crearla
+# Las preguntas tienen que estar en un .csv
+# Revisar los datos para el ingreso
+# Revisar la pregunta del archivo
