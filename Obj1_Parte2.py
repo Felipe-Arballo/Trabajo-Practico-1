@@ -256,6 +256,40 @@ def ingreso_usuario():
     iniciar_sesion.pack(pady=20)
     recuperacion_clave.pack(pady=20)
 
+def verificar_pregunta():
+    pregunta_seleccionada = Label(raiz4 , text="Pregunta" , name="pregunta_recuperacion")
+    pregunta_seleccionada.pack(pady=10)
+
+    respuesta = Entry(raiz4 , name="respuesta_recuperacion")
+    respuesta.pack(pady=10)
+
+    verificar_respuesta = Button(raiz4 , text="Verificar respuesta" , name="verificacion_respuesta_recuperacion")
+    verificar_respuesta.config(bg="blue")
+    verificar_respuesta.pack(pady=10)
+
+def ventana_recuperacion():
+    raiz2.destroy()
+    global raiz4
+    raiz4 = Tk()
+    raiz4.title("Recuperacion Clave")
+    raiz4.geometry("700x450")
+    raiz4.resizable(0,0)
+    #raiz4.iconbitmap("icono.ico")
+
+    label_recuperacion_usuario = Label(raiz4 , text="Ingrese su usuario")
+    label_recuperacion_usuario.config(padx=10 , pady=10 , font=("Arial" , 12))
+
+    entry_recuperacion_usuario = Entry(raiz4)
+    entry_recuperacion_usuario.config(bg="pink")
+    entry_recuperacion_usuario.place(width=200 , height=40)
+
+    recuperacion_cuenta = Button(raiz4 , text="RECUPERAR CUENTA" , command = verificar_pregunta)
+    recuperacion_cuenta.config(bg="red" , width=25 , height=2)
+
+    label_recuperacion_usuario.pack(pady=10)
+    entry_recuperacion_usuario.pack(pady=10)
+    recuperacion_cuenta.pack(pady=20)
+
 def main():
     crear_ventana_principal(definir_parametros())
 
