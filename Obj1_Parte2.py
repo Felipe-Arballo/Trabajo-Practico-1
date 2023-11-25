@@ -91,41 +91,7 @@ def crear_ventana_principal(parametros):
     crear_usuario = Button(raiz1 , text="Crear Usuario" , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
     crear_usuario.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
 
-    ingresar_usuario = Button(raiz1 , text="Ingresar Usuario" , command = ingreso_usuariodef ingreso_usuario():
-    raiz1.destroy()
-    global raiz2
-    raiz2 = Tk()
-    raiz2.title("Identificación para acceso")
-    raiz2.geometry("700x450")
-    raiz2.resizable(0,0)
-    #raiz2.iconbitmap("icono.ico")
-
-    label_ingreso_usuario = Label(raiz2 , text="Ingrese su usuario")
-    label_ingreso_usuario.config(padx=10 , pady=10 , font=("Arial" , 12))
-
-    entry_ingreso_usuario = Entry(raiz2)
-    entry_ingreso_usuario.config(bg="pink")
-    entry_ingreso_usuario.place(width=200 , height=40)
-
-    label_ingreso_clave = Label(raiz2 , text="Ingrese su clave")
-    label_ingreso_clave.config(padx=10 , pady=10 , font=("Arial" , 12))
-
-    entry_ingreso_clave = Entry(raiz2)
-    entry_ingreso_clave.config(bg="pink")
-    entry_ingreso_clave.place(width=200 , height=40)
-
-    iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN")
-    iniciar_sesion.config(bg="green" , width=25 , height=2)
-
-    recuperacion_clave = Button(raiz2 , text="Recuperar clave")
-    recuperacion_clave.config(bg="red")
-
-    label_ingreso_usuario.pack(pady=10)
-    entry_ingreso_usuario.pack(pady=10)
-    label_ingreso_clave.pack(pady=10)
-    entry_ingreso_clave.pack(pady=10)
-    iniciar_sesion.pack(pady=20)
-    recuperacion_clave.pack(pady=20))
+    ingresar_usuario = Button(raiz1 , text="Ingresar Usuario" , command = ingreso_usuario)
     ingresar_usuario.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
 
     integrantes = Label(raiz1 , text=parametros["integrantes_config"][0])
