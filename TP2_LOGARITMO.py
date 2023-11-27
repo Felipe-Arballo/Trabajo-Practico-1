@@ -63,8 +63,8 @@ def main():
 
 main()
 
-# Archivo que agrega los usuarios
-# Arhivo con preguntas de seguridad
-# Leer el arhivo para el ingreso de sesion
-# Leer el archivo para pregunta de seguridad en la recuperacion
-# Guardar mensajes enviados para devolverlos en la ventana de mensajes
+# Guardar los datos de la cuenta al crearla
+# Las preguntas tienen que estar en un .csv
+# Revisar los datos para el ingreso
+# Revisar la pregunta del archivo al recuperar la cuenta
+# Revisar el usuario y los demas datos al consultar los mensajes recibidos
