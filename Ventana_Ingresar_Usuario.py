@@ -1,4 +1,5 @@
 from tkinter import *
+from Ventana_Cifrados import crear_ventana_cifrados
 
 def ingreso_usuario(raiz1):
     raiz1.destroy()
@@ -7,7 +8,7 @@ def ingreso_usuario(raiz1):
     raiz2.title("Identificación para acceso")
     raiz2.geometry("700x450")
     raiz2.resizable(0,0)
-    #raiz2.iconbitmap("icono.ico")
+    raiz2.iconbitmap("icono.ico")
 
     label_ingreso_usuario = Label(raiz2 , text="Ingrese su usuario")
     label_ingreso_usuario.config(padx=10 , pady=10 , font=("Arial" , 12))
@@ -23,7 +24,7 @@ def ingreso_usuario(raiz1):
     entry_ingreso_clave.config(bg="pink")
     entry_ingreso_clave.place(width=200 , height=40)
 
-    iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN")
+    iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN", command=lambda: crear_ventana_cifrados(raiz2))
     iniciar_sesion.config(bg="green" , width=25 , height=2)
 
     recuperacion_clave = Button(raiz2 , text="Recuperar clave", command=ventana_recuperacion)
