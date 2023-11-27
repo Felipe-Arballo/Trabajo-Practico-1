@@ -1,5 +1,5 @@
 from tkinter import *
-from Funiones_Validar import validar_clave, validar_nombre
+from Funciones_Validar import validar_clave, validar_nombre
 
 def creo_usuario(raiz1):
     global raiz3
