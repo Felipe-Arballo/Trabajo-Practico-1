@@ -88,7 +88,7 @@ def crear_ventana_principal(parametros):
     bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
     bienvenida.config(font=(parametros["bienvenida_config"][1], parametros["bienvenida_config"][2]) )
     
-    crear_usuario = Button(raiz1 , text="Crear Usuario" , command = lambda: crear_ventana_cifrados(definir_parametros_cifrados()))
+    crear_usuario = Button(raiz1 , text="Crear Usuario" , command = creo_usuario)
     crear_usuario.config(bg=parametros["continuar_config"][0] , bd=parametros["continuar_config"][1], relief=parametros["continuar_config"][2], cursor=parametros["continuar_config"][3], font=((parametros["continuar_config"][4]), parametros["continuar_config"][5]))
 
     ingresar_usuario = Button(raiz1 , text="Ingresar Usuario" , command = ingreso_usuario)
@@ -104,7 +104,7 @@ def crear_ventana_principal(parametros):
 
     raiz1.mainloop()
 
-def crear_usuario():
+def creo_usuario():
     global raiz3
     raiz1.destroy()
     raiz3 = Tk()
