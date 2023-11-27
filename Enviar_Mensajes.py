@@ -17,7 +17,6 @@ def crear_ventana_mensajes(raiz_vieja, cifrado):
 
     boton_destinatario = Button(raiz2, text="Verificar Destinatario", command= lambda: verificar_destinatario(cifrado))
     boton_destinatario.pack(pady=10)
-    raiz2.mainloop()
     
 def verificar_destinatario(cifrado):
     texto_mensaje = Label(raiz2 , text="Ingrese su mensaje")
