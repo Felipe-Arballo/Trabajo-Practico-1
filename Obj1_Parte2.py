@@ -184,7 +184,7 @@ def ingreso_usuario():
     iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN")
     iniciar_sesion.config(bg="green" , width=25 , height=2)
 
-    recuperacion_clave = Button(raiz2 , text="Recuperar clave")
+    recuperacion_clave = Button(raiz2 , text="Recuperar clave", command=ventana_recuperacion)
     recuperacion_clave.config(bg="red")
 
     label_ingreso_usuario.pack(pady=10)
