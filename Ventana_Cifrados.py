@@ -1,5 +1,5 @@
 from tkinter import *
-from Funiones_Validar import validar_atbash, validar_cesar, validar_cesar2
+from Funciones_Validar import validar_atbash, validar_cesar, validar_cesar2
 from Enviar_Mensajes import crear_ventana_mensajes
 
 def crear_ventana_cifrados(raiz1):
