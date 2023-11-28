@@ -1,8 +1,8 @@
 from tkinter import *
 from Ventana_Cifrados import crear_ventana_cifrados
 
-def ingreso_usuario(raiz1):
-    raiz1.destroy()
+def ingreso_usuario(raiz_vieja):
+    raiz_vieja.destroy()
     global raiz2
     raiz2 = Tk()
     raiz2.title("Identificación para acceso")
@@ -24,7 +24,7 @@ def ingreso_usuario(raiz1):
     entry_ingreso_clave.config(bg="pink")
     entry_ingreso_clave.place(width=200 , height=40)
 
-    iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN", command=lambda: crear_ventana_cifrados(raiz2))
+    iniciar_sesion = Button(raiz2 , text="INICIAR SESIÓN", command=lambda: verificar_cuenta(entry_ingreso_usuario,entry_ingreso_clave))
     iniciar_sesion.config(bg="green" , width=25 , height=2)
 
     recuperacion_clave = Button(raiz2 , text="Recuperar clave", command=ventana_recuperacion)
@@ -36,17 +36,25 @@ def ingreso_usuario(raiz1):
     entry_ingreso_clave.pack(pady=10)
     iniciar_sesion.pack(pady=20)
     recuperacion_clave.pack(pady=20)
+    raiz2.mainloop()
 
-def verificar_pregunta():
-    pregunta_seleccionada = Label(raiz4 , text="Pregunta" , name="pregunta_recuperacion")
-    pregunta_seleccionada.pack(pady=10)
+def leer(archivo):
+    lineas = archivo.readlines()
+    mensaje = {}
+    for linea in lineas:
+        linea_modificada = linea.rstrip("\n").split(',')
+        mensaje[linea_modificada[0]] = linea_modificada
+    return mensaje
 
-    respuesta = Entry(raiz4 , name="respuesta_recuperacion")
-    respuesta.pack(pady=10)
-
-    verificar_respuesta = Button(raiz4 , text="Verificar respuesta" , name="verificacion_respuesta_recuperacion")
-    verificar_respuesta.config(bg="blue")
-    verificar_respuesta.pack(pady=10)
+def verificar_cuenta(entrada_usuario,entrada_clave):
+    usuario = entrada_usuario.get()
+    clave = entrada_clave.get()
+    with open("archivo_datos.csv", "r") as archivo:
+        mensaje = leer(archivo)
+    if mensaje[usuario][1] == clave:
+        crear_ventana_cifrados(raiz2)
+    else:
+        print("Sin Coincidencias")
 
 def ventana_recuperacion():
     raiz2.destroy()
@@ -70,3 +78,14 @@ def ventana_recuperacion():
     label_recuperacion_usuario.pack(pady=10)
     entry_recuperacion_usuario.pack(pady=10)
     recuperacion_cuenta.pack(pady=20)
+
+def verificar_pregunta():
+    pregunta_seleccionada = Label(raiz4 , text="Pregunta" , name="pregunta_recuperacion")
+    pregunta_seleccionada.pack(pady=10)
+
+    respuesta = Entry(raiz4 , name="respuesta_recuperacion")
+    respuesta.pack(pady=10)
+
+    verificar_respuesta = Button(raiz4 , text="Verificar respuesta" , name="verificacion_respuesta_recuperacion")
+    verificar_respuesta.config(bg="blue")
+    verificar_respuesta.pack(pady=10)
