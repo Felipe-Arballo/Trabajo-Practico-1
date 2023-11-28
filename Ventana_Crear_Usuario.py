@@ -38,18 +38,29 @@ def seleccionar_pregunta(entrada_usuario, entrada_clave):
     pregunta_seleccionada = Label(raiz3, text="Selecciono la pregunta: ", name="texto_pregunta")
     pregunta_seleccionada.pack(pady=10)
 
-    crear_cuenta = Button(raiz3, text="Crear Cuenta",name="crear", command=lambda: validar_cuenta(entrada_usuario, entrada_clave))
+    global pregunta_seleccionada_global
+
+    crear_cuenta = Button(raiz3, text="Crear Cuenta",name="crear", command=lambda: validar_cuenta(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada))
     crear_cuenta.pack(pady=5)
+    pregunta_seleccionada_global = pregunta_seleccionada.cget("text")
+    
     validacion = Label(raiz3, name="validacion")
     validacion.pack()
 
-def validar_cuenta(entrada_usuario, entrada_clave):
+def validar_cuenta(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada):
     if validar_clave(entrada_clave.get()) and validar_nombre(entrada_usuario.get()):
         resultado = True
     else:
         resultado = False
     validacion = Label(raiz3, text=f"La validacion fue: {resultado}", name="validacion")
     validacion.pack(pady=5)
-    return resultado
+    
+    if resultado:
+        guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada)
+
+def guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada):
+    with open("archivo_datos.csv","w") as archivo_datos:
+        
+        archivo_datos.write(f'{entrada_usuario.get()},{entrada_clave.get()},{entrada_pregunta.get()},{pregunta_seleccionada_global}')
 
 lista = ("Apellido de su abuela materna", "Nombre de tu mascota", "Nombre de tu mejor amigo/amiga", "Cantante preferido", "Ciudad preferida")
