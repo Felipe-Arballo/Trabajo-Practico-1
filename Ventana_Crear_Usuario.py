@@ -64,3 +64,5 @@ def guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_s
         archivo_datos.write(f'{entrada_usuario.get()},{entrada_clave.get()},{entrada_pregunta.get()},{pregunta_seleccionada_global}')
 
 lista = ("Apellido de su abuela materna", "Nombre de tu mascota", "Nombre de tu mejor amigo/amiga", "Cantante preferido", "Ciudad preferida")
+
+# Falta hacer algo para que se guarde el texto del boton de la pregunta seleccionada en un lugar y despues se pueda escribir en el archivo.
