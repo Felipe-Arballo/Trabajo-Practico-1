@@ -57,7 +57,6 @@ def definir_parametros():
 
     return parametros
 
-
 def main():
     crear_ventana_principal(definir_parametros())
 
