@@ -1,3 +1,12 @@
+from tkinter import *
+from Funciones_Cifrados import (cifrado_atbash , cifrado_cesar , devolver_valor)
+
+abecedario = "abcdefghijklmnñopqrstuvwxyz"
+numeros = "0123456789"
+clave_no_numero = "CLAVE NO NÚMERO"
+clave_invalida = "CLAVE INVÁLIDA"
+falta_mensaje = "FALTA EL MENSAJE"
+
 def validar_nombre(nombre):
     longitud = len(nombre)
     simbolos = "_-."
@@ -46,3 +55,44 @@ def validar_clave(clave):
     else:
         resultado_final = False
     return resultado_final
+
+def validar_cesar(entrada_clave, entrada_mensaje):
+    if not entrada_clave.get().isnumeric():
+        resultado = clave_no_numero
+        devolver_valor(resultado, True)
+    clave = int(entrada_clave.get())
+    mensaje = entrada_mensaje.get()
+    if clave < 0:
+        resultado = clave_invalida
+        devolver_valor(resultado, True)
+    elif not mensaje: 
+        resultado = falta_mensaje
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_cesar(mensaje,clave)
+        devolver_valor(resultado, False)
+
+def validar_cesar2(entrada_clave, entrada_mensaje): 
+    if not entrada_clave.get().isnumeric():
+        resultado = clave_no_numero
+        devolver_valor(resultado, True)
+    clave = -int(entrada_clave.get())
+    mensaje = entrada_mensaje.get()
+    if clave > 0:
+        resultado = clave_invalida
+        devolver_valor(resultado, True)
+    elif not mensaje: 
+        resultado = falta_mensaje
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_cesar(mensaje,clave)
+        devolver_valor(resultado, False)
+
+def validar_atbash(entrada_mensaje):
+    mensaje = entrada_mensaje.get()
+    if not mensaje:
+        resultado = falta_mensaje
+        devolver_valor(resultado, True)
+    else:
+        resultado = cifrado_atbash(mensaje)
+        devolver_valor(resultado, False)
