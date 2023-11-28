@@ -1,3 +1,5 @@
+from tkinter import *
+
 abecedario = "abcdefghijklmnñopqrstuvwxyz"
 numeros = "0123456789"
 clave_no_numero = "CLAVE NO NÚMERO"
@@ -35,3 +37,27 @@ def cifrado_atbash(cadena):
         else:
             cadena_codificada += letra
     return cadena_codificada
+
+def devolver_valor(resultado, error):
+    parametros = definir_parametros_resultado()
+    raiz2 = Tk()
+    resultado_final = Label(raiz2 , name = "#")
+    if not error:
+            resultado_final.config(bg=parametros["resultado_config"][1] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text=parametros["resultado_config"][4] + resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
+    else:
+        resultado_final.config(bg=parametros["resultado_config"][0] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text= resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
+    resultado_final.pack()
+
+def definir_parametros_resultado():
+    parametros = {}
+    color_error = "red"
+    color_resultado = "grey"
+    borde = 5
+    relieve = "raised"
+    texto = "Resultado:"
+    width = 50
+    height = 50
+    tipo_letra = "Arial"
+    tamaño_letra = 15
+    parametros["resultado_config"] =(color_error, color_resultado, borde, relieve, texto, width, height, tipo_letra, tamaño_letra)
+    return parametros
