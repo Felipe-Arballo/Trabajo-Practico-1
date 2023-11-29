@@ -110,7 +110,7 @@ def devolver_valor(resultado, validacion, raiz2):
             resultado_final.config(bg=parametros["resultado_config"][1] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text=parametros["resultado_config"][4] + resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
     else:
         resultado_final.config(bg=parametros["resultado_config"][0] , bd=parametros["resultado_config"][2] , relief=parametros["resultado_config"][3] , text= resultado , width=parametros["resultado_config"][5] , height=parametros["resultado_config"][6] , font=(parametros["resultado_config"][7] , parametros["resultado_config"][8]))
-    resultado_final.pack()
+    resultado_final.pack(side="bottom",anchor="n")
 
 def definir_parametros_resultado():
     parametros = {}
@@ -119,8 +119,8 @@ def definir_parametros_resultado():
     borde = 5
     relieve = "raised"
     texto = "Resultado:"
-    width = 50
-    height = 50
+    width = 30
+    height = 5
     tipo_letra = "Arial"
     tamaño_letra = 15
     parametros["resultado_config"] =(color_error, color_resultado, borde, relieve, texto, width, height, tipo_letra, tamaño_letra)
