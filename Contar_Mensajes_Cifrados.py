@@ -7,7 +7,6 @@ def consultar_mensajes_cifrados(raiz_vieja):
     raiz_consulta = Tk()
     raiz_consulta.title("Consultar Mensajes Cifrados")
     raiz_consulta.geometry("1000x500")
-    raiz_consulta.resizable(0,0)
     raiz_consulta.iconbitmap("icono.ico")
     
     with open("mensajes_enviados.csv", "r") as archivo:
