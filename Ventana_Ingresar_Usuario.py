@@ -9,7 +9,6 @@ def ingreso_usuario(raiz_vieja):
     raiz_ingreso = Tk()
     raiz_ingreso.title("Identificación para acceso")
     raiz_ingreso.geometry("700x450")
-    raiz_ingreso.resizable(0,0)
     raiz_ingreso.iconbitmap("icono.ico")
 
     label_ingreso_usuario = Label(raiz_ingreso , text="Ingrese su usuario")
