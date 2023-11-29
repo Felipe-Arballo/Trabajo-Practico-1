@@ -27,9 +27,9 @@ def crear_ventana_cifrados(raiz_vieja):
     entrada_clave.place(width=parametros["entrada_clave_config"][1] , height=parametros["entrada_clave_config"][2])
 
     cifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][0] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(raiz2, entrada_clave, entrada_mensaje))
-
+    
     cifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][1] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
-
+    
     descifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][2] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(raiz2, entrada_clave, entrada_mensaje))
 
     descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
@@ -44,13 +44,13 @@ def crear_ventana_cifrados(raiz_vieja):
     entrada_mensaje.pack()
     texto_clave.pack()
     entrada_clave.pack()
-    cifrado_CESAR.pack(padx=20 , pady=10)
-    cifrado_ATBASH.pack(padx=20 , pady=10)
-    descifrado_CESAR.pack(padx=20 , pady=10)
-    descifrado_ATBASH.pack(padx=20 , pady=10)
+    cifrado_CESAR.pack(padx=5, pady=5)
+    cifrado_ATBASH.pack(padx=5, pady=5)
+    descifrado_CESAR.pack(padx=5, pady=5)
+    descifrado_ATBASH.pack(padx=5, pady=5)
     consultar_mensajes.pack(pady=10)
-    enviar_mensaje_cesar.pack(side="left",padx=90, pady=5)
-    enviar_mensaje_atbash.pack(side="right",padx=90, pady=5)
+    enviar_mensaje_cesar.pack(side="left", padx=60, pady=5)
+    enviar_mensaje_atbash.pack(side="right",padx=60, pady=5)
     
     raiz2.mainloop()
 
