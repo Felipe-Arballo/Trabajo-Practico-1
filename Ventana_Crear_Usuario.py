@@ -81,7 +81,7 @@ def validar_cuenta(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_se
     else:
         validacion = Label(raiz3, text=(f'{parametros["param_validar_cuenta"][5]}{motivo}'), name=parametros["param_validar_cuenta"][6])
         resultado = False
-    validacion.pack(pady=5)
+    validacion.pack(pady=parametros["param_validar_cuenta"][7])
     return resultado
     
 def guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada):
@@ -152,6 +152,7 @@ def parametros_validar_cuenta():
     validacion_exitosa = "La validación fue exitosa"
     validacion_rechazada = "No se pudo crear la cuenta:"
     name_validacion = "validacion"
-    diccionario_parametros_validar_cuenta["param_validar_cuenta"] = (nombre_usado , clave_invalida , nombre_invalido , falta_respuesta , validacion_exitosa , validacion_rechazada , name_validacion)
+    pad_y = 5
+    diccionario_parametros_validar_cuenta["param_validar_cuenta"] = (nombre_usado , clave_invalida , nombre_invalido , falta_respuesta , validacion_exitosa , validacion_rechazada , name_validacion , pad_y)
     
     return diccionario_parametros_validar_cuenta
