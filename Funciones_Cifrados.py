@@ -6,6 +6,14 @@ clave_no_numero = "CLAVE NO NÚMERO"
 clave_invalida = "CLAVE INVÁLIDA"
 falta_mensaje = "FALTA EL MENSAJE"
 
+def leer_linea(archivo):
+    linea = archivo.readline()
+    if linea:
+        linea = linea.rstrip("\n").split(',')
+    else:
+        linea = " "," "
+    return linea
+
 def leer_arhivo_mensajes(archivo):
     lineas = archivo.readlines()
     mensaje = []
