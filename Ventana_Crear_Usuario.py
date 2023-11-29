@@ -9,7 +9,6 @@ def creo_usuario(raiz1):
     raiz3 = Tk()
     raiz3.title(parametros["ventana_crear_usuario"][0])
     raiz3.geometry(parametros["ventana_crear_usuario"][1])
-    raiz3.resizable(0, 0)
     #raiz3.iconbitmap(parametros["ventana_crear_usuario"][2])
     
     texto_usuario = Label(raiz3, text=parametros["label_usuario"][0])
