@@ -1,13 +1,5 @@
 from tkinter import *
-from Funciones_Cifrados import (cifrado_atbash , cifrado_cesar)
-
-def leer(archivo):
-    lineas = archivo.readlines()
-    mensaje = []
-    for linea in lineas:
-        linea_modificada = linea.rstrip("\n").split(',')
-        mensaje.append(linea_modificada)
-    return mensaje
+from Funciones_Cifrados import cifrado_atbash , cifrado_cesar, leer_arhivo_mensajes
 
 def consultar_mensajes_cifrados(raiz_vieja):
     global raiz_consulta
@@ -19,7 +11,7 @@ def consultar_mensajes_cifrados(raiz_vieja):
     raiz_consulta.iconbitmap("icono.ico")
     
     with open("mensajes_enviados.csv", "r") as archivo:
-        lineas = leer(archivo)
+        lineas = leer_arhivo_mensajes(archivo)
     mensajes = []
     for linea in lineas:
         destinatario,remitente,tipo_cifrado,mensaje_cifrado = linea
