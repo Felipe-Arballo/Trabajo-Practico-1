@@ -7,7 +7,6 @@ def crear_ventana_principal(parametros):
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
-    raiz1.resizable(0,0)
     raiz1.iconbitmap(parametros["ventana_principal"][2])
 
     bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
