@@ -10,7 +10,6 @@ def crear_ventana_cifrados(raiz_vieja):
     raiz2 = Tk()
     raiz2.title(parametros["ventana_cifrados"][0])
     raiz2.geometry(parametros["ventana_cifrados"][1])
-    raiz2.resizable(0,0)
     raiz2.iconbitmap(parametros["ventana_cifrados"][2])
 
     texto_mensaje = Label(raiz2 , text=parametros["mensaje_config"][0])
