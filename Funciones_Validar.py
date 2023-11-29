@@ -58,6 +58,7 @@ def validar_cesar(raiz2, entrada_clave, entrada_mensaje):
     if not entrada_clave.get().isnumeric():
         mensaje_descifrado = clave_no_numero
         resultado = False
+        devolver_valor(mensaje_descifrado, resultado, raiz2)
     clave = -int(entrada_clave.get())
     mensaje = entrada_mensaje.get()
     if clave > 0:
@@ -76,6 +77,7 @@ def validar_cesar2(raiz2, entrada_clave, entrada_mensaje):
     if not entrada_clave.get().isnumeric():
         mensaje_descifrado = clave_no_numero
         resultado = False
+        devolver_valor(mensaje_descifrado, resultado, raiz2)
     clave = -int(entrada_clave.get())
     mensaje = entrada_mensaje.get()
     if clave > 0:
