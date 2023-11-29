@@ -140,7 +140,6 @@ def crear_ventana_cifrados(parametros):
     raiz2 = Tk()
     raiz2.title(parametros["ventana_cifrados"][0])
     raiz2.geometry(parametros["ventana_cifrados"][1])
-    raiz2.resizable(0,0)
     raiz2.iconbitmap("TP1_LOGARITMO//icono.ico")
 
     texto_mensaje = Label(raiz2 , text=parametros["mensaje_config"][0])
@@ -183,7 +182,6 @@ def crear_ventana_principal(parametros):
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
-    raiz1.resizable(0,0)
     raiz1.iconbitmap("TP1_LOGARITMO//icono.ico")
 
     bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
