@@ -63,6 +63,12 @@ def main():
 
 main()
 
+# # Archivos:
 # Revisar la pregunta del archivo al recuperar la cuenta $ Aumentar el contador de veces que se recupero
 # Al enviar mensaje se debe guardar los datos
 # Mostrar mensaje de error al recuperar cuenta
+# # Parametros:
+# Ventana recuperacion(verificar_usuario)
+# Ventana ingresar_usuario
+# Enviar_mensajes
+# Contar_mensajes_cifrados
