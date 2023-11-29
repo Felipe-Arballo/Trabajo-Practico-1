@@ -6,7 +6,6 @@ def crear_ventana_mensajes(raiz_vieja, cifrado):
     raiz2 = Tk()
     raiz2.title(f"Mensajes con cifrado {cifrado}")
     raiz2.geometry("700x450")
-    raiz2.resizable(0,0)
     raiz2.iconbitmap("icono.ico")
 
     texto_entrada_destinatario = Label(raiz2, text="Ingrese el destinatario")
