@@ -1,5 +1,6 @@
 from tkinter import *
 from Funciones_Validar import validar_clave, validar_nombre
+from Funciones_Cifrados import leer_archivo_datos
 
 def creo_usuario(raiz1):
     global raiz3
@@ -25,10 +26,11 @@ def creo_usuario(raiz1):
     entrada_clave = Entry(raiz3)
     entrada_clave.config(bg="pink")
     entrada_clave.pack(pady=10)
-
-    for pregunta in lista:
-        preguntas = Button(raiz3, text=pregunta, command=lambda pregunta=pregunta: seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta))
-        preguntas.pack(pady=5)
+    with open("preguntas_seguridad.csv", "r") as archivo:
+        preguntas = leer_archivo_datos(archivo)
+        for pregunta in preguntas.values():
+            boton_preguntas = Button(raiz3, text=pregunta[1], command=lambda pregunta=pregunta[1]: seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta))
+            boton_preguntas.pack(pady=5)
 
 def seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta):
     entrada_pregunta = Entry(raiz3, name="entrada_pregunta")
@@ -48,18 +50,32 @@ def seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta):
     validacion.pack()
 
 def validar_cuenta(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada):
-    if validar_clave(entrada_clave.get()) and validar_nombre(entrada_usuario.get()):
+    clave_valida = True
+    nombre_valido = True
+    nombre_usado = False
+    with open("archivo_datos.csv", "r") as archivo:
+        datos = leer_archivo_datos(archivo)
+    if entrada_usuario.get() in datos.keys():
+        nombre_usado = True
+        motivo = "Nombre Usado"
+    if not validar_clave(entrada_clave.get()):
+        clave_valida = False
+        motivo = "Clave invalida"
+    if not validar_nombre(entrada_usuario.get()):
+        nombre_valido = False
+        motivo = "Nombre invalido"
+
+    if clave_valida and nombre_valido and not nombre_usado:
+        guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada)
+        validacion = Label(raiz3, text=f"La validación fue exitosa", name="validacion")
         resultado = True
     else:
+        validacion = Label(raiz3, text=f"No se pudo crear la cuenta: {motivo}", name="validacion")
         resultado = False
-    validacion = Label(raiz3, text=f"La validación fue: {resultado}", name="validacion")
     validacion.pack(pady=5)
+    return resultado
 
-    if resultado:
-        guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada)
-
+    
 def guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_seleccionada):
-    with open("archivo_datos.csv", "w") as archivo_datos:
-        archivo_datos.write(f'{entrada_usuario.get()},{entrada_clave.get()},{entrada_pregunta.get()},{pregunta_seleccionada_global}')
-
-lista = ("Apellido de su abuela materna", "Nombre de tu mascota", "Nombre de tu mejor amigo/amiga", "Cantante preferido", "Ciudad preferida")
+    with open("archivo_datos.csv", "a") as archivo_datos:
+        archivo_datos.write(f'{entrada_usuario.get()},{entrada_clave.get()},{entrada_pregunta.get()},{pregunta_seleccionada_global},{0}\n')
