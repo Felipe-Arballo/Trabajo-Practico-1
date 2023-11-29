@@ -1,11 +1,12 @@
 from tkinter import *
 from Funciones_Validar import validar_atbash, validar_cesar, validar_cesar2
 from Enviar_Mensajes import crear_ventana_mensajes
+from Contar_Mensajes_Cifrados import consultar_mensajes_cifrados
 
-def crear_ventana_cifrados(raiz1):
+def crear_ventana_cifrados(raiz_vieja):
     parametros = definir_parametros_cifrados()
     global raiz2
-    raiz1.destroy()
+    raiz_vieja.destroy()
     raiz2 = Tk()
     raiz2.title(parametros["ventana_cifrados"][0])
     raiz2.geometry(parametros["ventana_cifrados"][1])
@@ -26,17 +27,20 @@ def crear_ventana_cifrados(raiz1):
     entrada_clave.config(bg=parametros["entrada_clave_config"][0])
     entrada_clave.place(width=parametros["entrada_clave_config"][1] , height=parametros["entrada_clave_config"][2])
 
-    cifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][0] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(entrada_clave, entrada_mensaje))
+    cifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][0] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar(raiz2, entrada_clave, entrada_mensaje))
 
-    cifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][1] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+    cifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][1] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
 
-    descifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][2] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(entrada_clave, entrada_mensaje))
+    descifrado_CESAR = Button(raiz2 , text=parametros["texto_boton"][2] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_cesar2(raiz2, entrada_clave, entrada_mensaje))
 
-    descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(entrada_mensaje))
+    descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
 
     enviar_mensaje_cesar = Button(raiz2, text="Enviar Mensaje Cesar", command=lambda: crear_ventana_mensajes(raiz2, "Cesar"))
     enviar_mensaje_atbash = Button(raiz2, text="Enviar Mensaje Atbash", command=lambda: crear_ventana_mensajes(raiz2, "Atbash"))
     
+    consultar_mensajes = Button(raiz2, text="Consultar Mensajes recibidos", command=lambda: consultar_mensajes_cifrados(raiz2))
+    consultar_mensajes.config(bg="lightblue", width=25)
+
     texto_mensaje.pack()
     entrada_mensaje.pack()
     texto_clave.pack()
@@ -45,8 +49,11 @@ def crear_ventana_cifrados(raiz1):
     cifrado_ATBASH.pack(padx=20 , pady=10)
     descifrado_CESAR.pack(padx=20 , pady=10)
     descifrado_ATBASH.pack(padx=20 , pady=10)
+    consultar_mensajes.pack(pady=10)
     enviar_mensaje_cesar.pack(side="left",padx=90, pady=5)
     enviar_mensaje_atbash.pack(side="right",padx=90, pady=5)
+    
+    raiz2.mainloop()
 
 def definir_parametros_cifrados():
     parametros_cifrados = {}
