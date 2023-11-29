@@ -13,24 +13,24 @@ def creo_usuario(raiz1):
     
     texto_usuario = Label(raiz3, text=parametros["label_usuario"][0])
     texto_usuario.config(font=(parametros["label_usuario"][1], parametros["label_usuario"][2]))
-    texto_usuario.pack(pady=parametros["pad_y"][0])
+    texto_usuario.pack(pady=parametros["pad_y"])
 
     entrada_usuario = Entry(raiz3)
     entrada_usuario.config(bg=parametros["entry_usuario"])
-    entrada_usuario.pack(pady=parametros["pad_y"][0])
+    entrada_usuario.pack(pady=parametros["pad_y"])
 
     texto_clave = Label(raiz3, text=parametros["label_clave"][0])
     texto_clave.config(font=(parametros["label_clave"][1], parametros["label_clave"][2]))
-    texto_clave.pack(pady=parametros["pad_y"][0])
+    texto_clave.pack(pady=parametros["pad_y"])
 
     entrada_clave = Entry(raiz3)
     entrada_clave.config(bg=parametros["entry_clave"])
-    entrada_clave.pack(pady=parametros["pad_y"][0])
+    entrada_clave.pack(pady=parametros["pad_y"])
     with open("preguntas_seguridad.csv", "r") as archivo:
         numero, pregunta = leer_linea(archivo)
         while numero != " ":
             boton_preguntas = Button(raiz3, text=pregunta, command=lambda pregunta=pregunta: seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta))
-            boton_preguntas.pack(pady=parametros["pad_y"][1])
+            boton_preguntas.pack(pady=parametros["pad_y"])
             numero, pregunta = leer_linea(archivo)
 
 def seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta):
@@ -38,10 +38,10 @@ def seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta):
     
     entrada_pregunta = Entry(raiz3, name=parametros["entry_pregunta"][0])
     entrada_pregunta.config(bg=parametros["entry_pregunta"][1])
-    entrada_pregunta.pack(pady=parametros["pad_y"][0])
+    entrada_pregunta.pack(pady=parametros["pad_y"][1])
 
     pregunta_seleccionada = Label(raiz3, text=(f'{parametros["label_pregunta"][0]} {pregunta}'), name=parametros["label_pregunta"][1])
-    pregunta_seleccionada.pack(pady=parametros["pad_y"][0])
+    pregunta_seleccionada.pack(pady=parametros["pad_y"][1])
 
     global pregunta_seleccionada_global
     pregunta_seleccionada_global = pregunta
@@ -79,7 +79,7 @@ def validar_cuenta(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_se
         validacion = Label(raiz3, text=parametros["param_validar_cuenta"][4], name=parametros["param_validar_cuenta"][6])
         resultado = True
     else:
-        validacion = Label(raiz3, text=(f'{parametros["param_validar_cuenta"][5]}{motivo}'), name=parametros["param_validar_cuenta"][6])
+        validacion = Label(raiz3, text=(f'{parametros["param_validar_cuenta"][5]} {motivo}'), name=parametros["param_validar_cuenta"][6])
         resultado = False
     validacion.pack(pady=parametros["param_validar_cuenta"][7])
     return resultado
@@ -91,18 +91,17 @@ def guardar_archivo(entrada_usuario, entrada_clave, entrada_pregunta, pregunta_s
 def parametros_creo_usuario():
     diccionario_parametros_creo_usuario = {}
 
-    pad_y_10 = 10
     pad_y_5 = 5
-    diccionario_parametros_creo_usuario["pad_y"] = (pad_y_10 , pad_y_5)
+    diccionario_parametros_creo_usuario["pad_y"] = (pad_y_5)
     
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
-    tamaño = "700x450"
+    tamaño = "700x650"
     icono = "icono.ico"
     diccionario_parametros_creo_usuario["ventana_crear_usuario"] = (titulo , tamaño , icono)
     
     texto_usuario = "Ingrese el nombre de usuario"
     tipo_letra_usuario = "Arial"
-    tamaño_letra_usuario = 12
+    tamaño_letra_usuario = 10
     diccionario_parametros_creo_usuario["label_usuario"] = (texto_usuario , tipo_letra_usuario , tamaño_letra_usuario)
     
     bg_entry_usuario = "pink"
@@ -110,7 +109,7 @@ def parametros_creo_usuario():
     
     texto_clave = "Ingrese la contraseña"
     tipo_letra_clave = "Arial"
-    tamaño_letra_clave = 12
+    tamaño_letra_clave = 10
     diccionario_parametros_creo_usuario["label_clave"] = (texto_clave , tipo_letra_clave , tamaño_letra_clave)
     
     bg_entry_clave = "pink"
