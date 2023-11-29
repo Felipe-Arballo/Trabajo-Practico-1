@@ -41,7 +41,7 @@ def seleccionar_pregunta(entrada_usuario, entrada_clave, pregunta):
     entrada_pregunta.config(bg=parametros["entry_pregunta"][1])
     entrada_pregunta.pack(pady=parametros["pad_y"][0])
 
-    pregunta_seleccionada = Label(raiz3, text=(f'{parametros["label_pregunta"][0]}{pregunta}'), name=parametros["label_pregunta"][1])
+    pregunta_seleccionada = Label(raiz3, text=(f'{parametros["label_pregunta"][0]} {pregunta}'), name=parametros["label_pregunta"][1])
     pregunta_seleccionada.pack(pady=parametros["pad_y"][0])
 
     global pregunta_seleccionada_global
