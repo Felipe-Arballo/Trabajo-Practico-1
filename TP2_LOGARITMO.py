@@ -65,3 +65,4 @@ main()
 
 # Revisar la pregunta del archivo al recuperar la cuenta $ Aumentar el contador de veces que se recupero
 # Al enviar mensaje se debe guardar los datos
+# Mostrar mensaje de error al recuperar cuenta
