@@ -11,7 +11,7 @@ def crear_ventana_cifrados(raiz_vieja):
     raiz2.title(parametros["ventana_cifrados"][0])
     raiz2.geometry(parametros["ventana_cifrados"][1])
     raiz2.resizable(0,0)
-    raiz2.iconbitmap("icono.ico")
+    raiz2.iconbitmap(parametros["ventana_cifrados"][2])
 
     texto_mensaje = Label(raiz2 , text=parametros["mensaje_config"][0])
     texto_mensaje.config(padx=10 , pady=10 , font=(parametros["mensaje_config"][1] , parametros["mensaje_config"][2]))
@@ -35,11 +35,11 @@ def crear_ventana_cifrados(raiz_vieja):
 
     descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
 
-    enviar_mensaje_cesar = Button(raiz2, text="Enviar Mensaje Cesar", command=lambda: crear_ventana_mensajes(raiz2, "Cesar"))
-    enviar_mensaje_atbash = Button(raiz2, text="Enviar Mensaje Atbash", command=lambda: crear_ventana_mensajes(raiz2, "Atbash"))
+    enviar_mensaje_cesar = Button(raiz2, text=parametros["envio_mensajes_cifrados"][0], command=lambda: crear_ventana_mensajes(raiz2, "Cesar"))
+    enviar_mensaje_atbash = Button(raiz2, text=parametros["envio_mensajes_cifrados"][1], command=lambda: crear_ventana_mensajes(raiz2, "Atbash"))
     
-    consultar_mensajes = Button(raiz2, text="Consultar Mensajes recibidos", command=lambda: consultar_mensajes_cifrados(raiz2))
-    consultar_mensajes.config(bg="lightblue", width=25)
+    consultar_mensajes = Button(raiz2, text=parametros["consultar_mensajes_recibidos"][0], command=lambda: consultar_mensajes_cifrados(raiz2))
+    consultar_mensajes.config(bg=parametros["consultar_mensajes_recibidos"][1], width=parametros["consultar_mensajes_recibidos"][2])
 
     texto_mensaje.pack()
     entrada_mensaje.pack()
@@ -60,7 +60,8 @@ def definir_parametros_cifrados():
 
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
-    parametros_cifrados["ventana_cifrados"] = (titulo , tamaño)
+    icono = "icono.ico"
+    parametros_cifrados["ventana_cifrados"] = (titulo , tamaño , icono)
 
     texto_mensaje = "Ingrese el mensaje a cifrar: "
     tipo_letra_mensaje = "Arial"
@@ -92,5 +93,14 @@ def definir_parametros_cifrados():
     relieve_boton = "ridge"
     cursor_boton = "hand2"
     parametros_cifrados["design_boton"] = (borde_boton , relieve_boton , cursor_boton)
-
+    
+    enviar_msj_cesar = "Enviar Mensaje Cesar"
+    enviar_msj_atbash = "Enviar Mensaje Atbash"
+    parametros_cifrados["envio_mensajes_cifrados"] = (enviar_msj_cesar , enviar_msj_atbash)
+    
+    text_consult_msjs_recibidos = "Consultar Mensajes recibidos"
+    bg_msjs_recibidos = "lightblue"
+    width_msjs_recibidos = 25
+    parametros_cifrados["consultar_mensajes_recibidos"] = (text_consult_msjs_recibidos , bg_msjs_recibidos , width_msjs_recibidos)
+    
     return parametros_cifrados
