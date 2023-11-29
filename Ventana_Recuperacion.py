@@ -32,4 +32,3 @@ def verificar_pregunta():
 
     verificar_respuesta = Button(raiz_recuperaion , text="Verificar respuesta" , name="verificacion_respuesta_recuperacion")
     verificar_respuesta.config(bg="blue")
-    verificar_respuesta.pack(pady=10)
