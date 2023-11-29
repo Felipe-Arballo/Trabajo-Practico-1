@@ -7,7 +7,6 @@ def crear_ventana_recuperacion(raiz_ingreso):
     raiz_recuperacion = Tk()
     raiz_recuperacion.title("Recuperacion Clave")
     raiz_recuperacion.geometry("700x450")
-    raiz_recuperacion.resizable(0,0)
     raiz_recuperacion.iconbitmap("icono.ico")
 
     label_recuperacion_usuario = Label(raiz_recuperacion , text="Ingrese su usuario")
