@@ -92,7 +92,7 @@ def validar_cesar2(raiz2, entrada_clave, entrada_mensaje):
             mensaje_descifrado = falta_mensaje
             resultado = False
         else:
-            mensaje_descifrado = cifrado_cesar(mensaje,-int(clave))
+            mensaje_descifrado = cifrado_cesar(mensaje,clave)
             resultado = True
         if raiz2 != "":
             devolver_valor(mensaje_descifrado, resultado, raiz2)
