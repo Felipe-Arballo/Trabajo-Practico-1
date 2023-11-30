@@ -25,6 +25,8 @@ def crear_ventana_mensajes(raiz_vieja, cifrado, nombre_usuario):
 def verificar_destinatario(cifrado, entrada_destinatario, nombre_usuario):
     parametros = parametros_verificar_destinatario()
     resultado = False
+    if entrada_destinatario.get() == "#":
+        resultado = True
     with open("archivo_datos.csv", "r") as archivo:
         linea = leer_linea(archivo)
         while linea[0] != " " and not resultado:
@@ -96,7 +98,6 @@ def enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario, nombre_
         mostrar_ventana = "Mensaje Enviado"
         with open("mensajes_enviados.csv", "a") as archivo_mensajes:
             archivo_mensajes.write(f'{destinatario},{nombre_usuario},{tipo_cifrado},{mensaje_cifrado}\n')
-
     else:
         mostrar_ventana = "Error de validacion"
     
