@@ -16,7 +16,9 @@ def consultar_mensajes_cifrados(raiz_vieja, nombre_usuario):
     mensajes = []
     for linea in lineas:
         destinatario,remitente,tipo_cifrado,mensaje_cifrado = linea
-        if destinatario == nombre_usuario:
+        if destinatario == nombre_usuario or destinatario == "#":
+            if destinatario == "#":
+                remitente = "#" + remitente
             if tipo_cifrado == parametros["parametros_varios"][0]:
                 mensaje_descifrado = cifrado_atbash(mensaje_cifrado)
             elif tipo_cifrado[0] == parametros["parametros_varios"][1]:
@@ -25,6 +27,7 @@ def consultar_mensajes_cifrados(raiz_vieja, nombre_usuario):
                 mensaje_descifrado = parametros["parametros_varios"][2]
             resultado = (remitente,mensaje_descifrado)
             mensajes.append(resultado)
+        
     mensajes_ordenados = sorted(mensajes , key=lambda x:x[0])
 
     texto_lista_mensajes = Label(raiz_consulta , text=parametros["parametros_varios"][3])
