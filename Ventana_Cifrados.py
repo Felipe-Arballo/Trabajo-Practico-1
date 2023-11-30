@@ -13,14 +13,14 @@ def crear_ventana_cifrados(raiz_vieja, nombre_usuario):
     raiz2.iconbitmap(parametros["ventana_cifrados"][2])
 
     texto_mensaje = Label(raiz2 , text=parametros["mensaje_config"][0])
-    texto_mensaje.config(padx=10 , pady=10 , font=(parametros["mensaje_config"][1] , parametros["mensaje_config"][2]))
+    texto_mensaje.config(padx=parametros["pads_y_sides"][2] , pady=parametros["pads_y_sides"][3] , font=(parametros["mensaje_config"][1] , parametros["mensaje_config"][2]))
 
     entrada_mensaje = Entry(raiz2)
     entrada_mensaje.config(bg=parametros["entrada_mensaje_config"][0])
     entrada_mensaje.place(width=parametros["entrada_mensaje_config"][1] , height=parametros["entrada_mensaje_config"][2])
 
     texto_clave = Label(raiz2 , text=parametros["clave_config"][0])
-    texto_clave.config(padx=10 , pady=10 , font=(parametros["clave_config"][1] , parametros["clave_config"][2]))
+    texto_clave.config(padx=parametros["pads_y_sides"][2] , pady=parametros["pads_y_sides"][3] , font=(parametros["clave_config"][1] , parametros["clave_config"][2]))
 
     entrada_clave = Entry(raiz2)
     entrada_clave.config(bg=parametros["entrada_clave_config"][0])
@@ -44,18 +44,27 @@ def crear_ventana_cifrados(raiz_vieja, nombre_usuario):
     entrada_mensaje.pack()
     texto_clave.pack()
     entrada_clave.pack()
-    cifrado_CESAR.pack(padx=5, pady=5)
-    cifrado_ATBASH.pack(padx=5, pady=5)
-    descifrado_CESAR.pack(padx=5, pady=5)
-    descifrado_ATBASH.pack(padx=5, pady=5)
-    consultar_mensajes.pack(pady=10)
-    enviar_mensaje_cesar.pack(side="left", padx=60, pady=5)
-    enviar_mensaje_atbash.pack(side="right",padx=60, pady=5)
+    cifrado_CESAR.pack(padx=parametros["pads_y_sides"][0], pady=parametros["pads_y_sides"][1])
+    cifrado_ATBASH.pack(padx=parametros["pads_y_sides"][0], pady=parametros["pads_y_sides"][1])
+    descifrado_CESAR.pack(padx=parametros["pads_y_sides"][0], pady=parametros["pads_y_sides"][1])
+    descifrado_ATBASH.pack(padx=parametros["pads_y_sides"][0], pady=parametros["pads_y_sides"][1])
+    consultar_mensajes.pack(pady=parametros["pads_y_sides"][3])
+    enviar_mensaje_cesar.pack(side=parametros["pads_y_sides"][5], padx=parametros["pads_y_sides"][4], pady=parametros["pads_y_sides"][1])
+    enviar_mensaje_atbash.pack(side=parametros["pads_y_sides"][6],padx=parametros["pads_y_sides"][4], pady=parametros["pads_y_sides"][1])
     
     raiz2.mainloop()
 
 def definir_parametros_cifrados():
     parametros_cifrados = {}
+    
+    padx_5 = 5
+    pady_5 = 5
+    padx_10 = 10
+    pady_10 = 10
+    padx_60 = 60
+    side_left = "left"
+    side_right = "right"
+    parametros_cifrados["pads_y_sides"] = (padx_5 , pady_5 , padx_10 , pady_10 , padx_60 , side_left , side_right)
 
     titulo = "TP Grupal Parte 1 - Grupo: LOGARITMO"
     tamaño = "700x450"
@@ -103,4 +112,3 @@ def definir_parametros_cifrados():
     parametros_cifrados["consultar_mensajes_recibidos"] = (text_consult_msjs_recibidos , bg_msjs_recibidos , width_msjs_recibidos)
     
     return parametros_cifrados
-
