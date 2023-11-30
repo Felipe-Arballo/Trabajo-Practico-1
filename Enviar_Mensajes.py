@@ -1,4 +1,6 @@
 from tkinter import *
+from Funciones_Cifrados import cifrado_atbash, cifrado_cesar, leer_linea
+from Funciones_Validar import validar_atbash, validar_cesar
 
 def crear_ventana_mensajes(raiz_vieja, cifrado):
     parametros = parametros_crear_ventana_mensajes()
@@ -22,41 +24,85 @@ def crear_ventana_mensajes(raiz_vieja, cifrado):
     
 def verificar_destinatario(cifrado, entrada_destinatario):
     parametros = parametros_verificar_destinatario()
-    
+    resultado = False
     with open("archivo_datos.csv", "r") as archivo:
-        datos = leer_archivo_datos(archivo)
-    if entrada_destinatario.get() not in datos.keys():
-        resultado = False
-        motivo = parametros["motivos"][0]
-    else:
-        resultado = True
-        motivo = parametros["motivos"][1]
+        linea = leer_linea(archivo)
+        while linea[0] != " " and not resultado:
+            if linea[0] == entrada_destinatario.get():
+                resultado = True
+            linea = leer_linea(archivo)
 
-    texto_mensaje = Label(raiz2 , text=motivo, name=parametros["parametros_varios"][0])
+    if resultado:
+        mostrar_ventana = parametros["mostrar_ventana"][1]
+    else:
+        mostrar_ventana = parametros["mostrar_ventana"][0]
+
+    texto_mensaje = Label(raiz2 , text= mostrar_ventana, name=parametros["parametros_varios"][0])
     texto_mensaje.config(font=(parametros["fuente_y_pads"][0] , parametros["fuente_y_pads"][1]))
     texto_mensaje.pack(pady=parametros["fuente_y_pads"][2])
     
-    if resultado:
-        entrada_mensaje = Entry(raiz2, name=parametros["parametros_varios"][1])
-        entrada_mensaje.config(bg=parametros["background"])
-        entrada_mensaje.pack()
-        if cifrado == parametros["parametros_varios"][2]:
-            texto_clave = Label(raiz2 , text=parametros["parametros_varios"][3],name=parametros["parametros_varios"][4])
-            texto_clave.config(font=(parametros["fuente_y_pads"][0] , parametros["fuente_y_pads"][1]))
+    entrada_mensaje = Entry(raiz2, name=parametros["parametros_varios"][1])
+    entrada_mensaje.config(bg=parametros["background"])
+
+    boton_enviar = Button(raiz2, text=parametros["parametros_varios"][6],name=parametros["parametros_varios"][7], command=lambda: enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario))
+        
+    if cifrado == parametros["parametros_varios"][2]:
+        texto_clave = Label(raiz2 , text=parametros["parametros_varios"][3],name=parametros["parametros_varios"][4])
+        texto_clave.config(font=(parametros["fuente_y_pads"][0] , parametros["fuente_y_pads"][1]))
+            
+        entrada_clave = Entry(raiz2, name=parametros["parametros_varios"][5])
+        entrada_clave.config(bg=parametros["background"])
+        
+        if resultado:
+            entrada_mensaje.pack()
             texto_clave.pack(pady=parametros["fuente_y_pads"][2])
-
-            entrada_clave = Entry(raiz2, name=parametros["parametros_varios"][5])
-            entrada_clave.config(bg=parametros["background"])
             entrada_clave.pack()
+            boton_enviar.pack(pady=parametros["fuente_y_pads"][2])
+        else:
+            entrada_mensaje.grid_remove()
+            texto_clave.grid_remove()
+            entrada_clave.grid_remove()
+            boton_enviar.grid_remove()
+    else:
+        entrada_clave = "Atbash"
+        if resultado:
+            entrada_mensaje.pack()
+            boton_enviar.pack(pady=parametros["fuente_y_pads"][2])
+        else:
+            entrada_mensaje.grid_remove()
+            boton_enviar.grid_remove()
 
-        boton_enviar = Button(raiz2, text=parametros["parametros_varios"][6],name=parametros["parametros_varios"][7], command=lambda: enviar_mensaje(entrada_mensaje, entrada_clave))
-        boton_enviar.pack(pady=parametros["fuente_y_pads"][2])
     return resultado
 
-def enviar_mensaje(entrada_mensaje, entrada_clave):
-    mensaje = entrada_mensaje.get()
-    clave = entrada_clave.get()
+def enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario):
+    if entrada_clave != "Atbash":
+        tipo_cifrado = "C" + entrada_clave.get()
+    else:
+        tipo_cifrado = "A"
+    
+    if tipo_cifrado == "A":
+        cifrado_valido = validar_atbash("",entrada_mensaje)
+    else:
+        cifrado_valido = validar_cesar("",entrada_clave, entrada_mensaje)
 
+    if cifrado_valido:
+        mensaje = entrada_mensaje.get()
+        destinatario = entrada_destinatario.get()
+        if tipo_cifrado == "A":
+            mensaje_cifrado = cifrado_atbash(mensaje)
+        else:
+            clave = int(entrada_clave.get())
+            mensaje_cifrado = cifrado_cesar(mensaje, clave)
+        mostrar_ventana = "Mensaje Enviado"
+        with open("mensajes_enviados.csv", "a") as archivo_mensajes:
+            archivo_mensajes.write(f'{destinatario},{"usuario"},{tipo_cifrado},{mensaje_cifrado}\n')
+
+    else:
+        mostrar_ventana = "Error de validacion"
+    
+    validacion = Label(raiz2, text=mostrar_ventana, name="validacion")
+    validacion.pack()
+        
 def parametros_crear_ventana_mensajes():
     diccionario_parametros_crear_ventana_mensajes = {}
     
@@ -89,9 +135,9 @@ def parametros_verificar_destinatario():
     bg = "pink"
     diccionario_parametros_verificar_destinatario["background"] = (bg)
     
-    motivo_1 = "El destinatario no esta registrado"
-    motivo_2 = "Ingrese su mensaje"
-    diccionario_parametros_verificar_destinatario["motivos"] = (motivo_1 , motivo_2)
+    mostrar_ventana_1 = "El destinatario no esta registrado"
+    mostrar_ventana_2 = "Ingrese su mensaje"
+    diccionario_parametros_verificar_destinatario["mostrar_ventana"] = (mostrar_ventana_1 , mostrar_ventana_2)
     
     name_texto_mensaje = "texto_mensaje"
     name_entrada_mensaje = "entrada_mensaje"
@@ -104,3 +150,4 @@ def parametros_verificar_destinatario():
     diccionario_parametros_verificar_destinatario["parametros_varios"] = (name_texto_mensaje , name_entrada_mensaje , si_cifrado_es , text_texto_clave , name_texto_clave , name_entrada_clave , text_boton_enviar , name_boton_enviar)
 
     return diccionario_parametros_verificar_destinatario
+
