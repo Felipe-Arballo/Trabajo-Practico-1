@@ -3,7 +3,7 @@ from Funciones_Validar import validar_atbash, validar_cesar, validar_cesar2
 from Enviar_Mensajes import crear_ventana_mensajes
 from Contar_Mensajes_Cifrados import consultar_mensajes_cifrados
 
-def crear_ventana_cifrados(raiz_vieja):
+def crear_ventana_cifrados(raiz_vieja, nombre_usuario):
     parametros = definir_parametros_cifrados()
     global raiz2
     raiz_vieja.destroy()
@@ -34,10 +34,10 @@ def crear_ventana_cifrados(raiz_vieja):
 
     descifrado_ATBASH = Button(raiz2 , text=parametros["texto_boton"][3] , bd=parametros["design_boton"][0] , relief=parametros["design_boton"][1] , cursor=parametros["design_boton"][2] , command=lambda: validar_atbash(raiz2, entrada_mensaje))
 
-    enviar_mensaje_cesar = Button(raiz2, text=parametros["envio_mensajes_cifrados"][0], command=lambda: crear_ventana_mensajes(raiz2, "Cesar"))
-    enviar_mensaje_atbash = Button(raiz2, text=parametros["envio_mensajes_cifrados"][1], command=lambda: crear_ventana_mensajes(raiz2, "Atbash"))
+    enviar_mensaje_cesar = Button(raiz2, text=parametros["envio_mensajes_cifrados"][0], command=lambda: crear_ventana_mensajes(raiz2, "Cesar", nombre_usuario))
+    enviar_mensaje_atbash = Button(raiz2, text=parametros["envio_mensajes_cifrados"][1], command=lambda: crear_ventana_mensajes(raiz2, "Atbash", nombre_usuario))
     
-    consultar_mensajes = Button(raiz2, text=parametros["consultar_mensajes_recibidos"][0], command=lambda: consultar_mensajes_cifrados(raiz2))
+    consultar_mensajes = Button(raiz2, text=parametros["consultar_mensajes_recibidos"][0], command=lambda: consultar_mensajes_cifrados(raiz2, nombre_usuario))
     consultar_mensajes.config(bg=parametros["consultar_mensajes_recibidos"][1], width=parametros["consultar_mensajes_recibidos"][2])
 
     texto_mensaje.pack()
@@ -103,3 +103,4 @@ def definir_parametros_cifrados():
     parametros_cifrados["consultar_mensajes_recibidos"] = (text_consult_msjs_recibidos , bg_msjs_recibidos , width_msjs_recibidos)
     
     return parametros_cifrados
+
