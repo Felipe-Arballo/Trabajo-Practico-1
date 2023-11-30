@@ -7,7 +7,6 @@ def crear_ventana_principal(parametros):
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
-    raiz1.resizable(0,0)
     raiz1.iconbitmap(parametros["ventana_principal"][2])
 
     bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
@@ -22,10 +21,10 @@ def crear_ventana_principal(parametros):
     integrantes = Label(raiz1 , text=parametros["integrantes_config"][0])
     integrantes.config(font=(parametros["integrantes_config"][1] , parametros["integrantes_config"][2]))
 
-    bienvenida.pack(pady=50)
-    crear_boton.pack(pady=5)
-    ingresar_boton.pack(pady=5)
-    integrantes.pack(pady=10)
+    bienvenida.pack(pady=parametros["pads"][2])
+    crear_boton.pack(pady=parametros["pads"][0])
+    ingresar_boton.pack(pady=parametros["pads"][0])
+    integrantes.pack(pady=parametros["pads"][1])
 
     raiz1.mainloop()
 
@@ -57,18 +56,15 @@ def definir_parametros():
     tamaño_letra_integrantes = 12
     parametros["integrantes_config"] = (texto_integrantes, tipo_letra_integrantes, tamaño_letra_integrantes)
 
+    pady_5 = 5
+    pady_10 = 10
+    pady_50 = 50
+    parametros["pads"] = (pady_5 , pady_10 , pady_50)
+
     return parametros
+
 
 def main():
     crear_ventana_principal(definir_parametros())
 
 main()
-
-# # Archivos:
-# Revisar la pregunta del archivo al recuperar la cuenta $ Aumentar el contador de veces que se recupero
-
-# # Parametros:
-# Ventana recuperacion(verificar_usuario)
-# Ventana ingresar_usuario
-# Enviar_mensajes
-# Contar_mensajes_cifrados
