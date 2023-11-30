@@ -54,13 +54,16 @@ def verificar_cuenta(entrada_usuario,entrada_clave):
     elif not datos[usuario][1] == clave:
         resultado = False
         motivo = parametros["parametros_generales"][1]
+    elif int(datos[usuario][4]) >= 3:
+        resultado = False
+        motivo = parametros["parametros_generales"][2]
     else:
         resultado = True
     if resultado:
         crear_ventana_cifrados(raiz_ingreso, usuario)
     else:
-        validacion = Label(raiz_ingreso,text=motivo, name=parametros["parametros_generales"][2])
-        validacion.pack(pady=parametros["parametros_generales"][3])
+        validacion = Label(raiz_ingreso,text=motivo, name=parametros["parametros_generales"][3])
+        validacion.pack(pady=parametros["parametros_generales"][4])
     return resultado
 
 def parametros_ingreso_usuario():
@@ -104,8 +107,9 @@ def parametros_verificar_cuenta():
     
     no_registrado = "Usuario no registrado"
     no_coinciden = "El nombre y la contraseña no coinciden"
+    usuario_bloqueado = "Usuario bloqueado"
     name_validacion = "verificar_cuenta"
     pady_validacion = 5
-    diccionario_parametros_verificar_cuenta["parametros_generales"] = (no_registrado , no_coinciden , name_validacion , pady_validacion)
+    diccionario_parametros_verificar_cuenta["parametros_generales"] = (no_registrado , no_coinciden, usuario_bloqueado, name_validacion , pady_validacion)
     
     return diccionario_parametros_verificar_cuenta
