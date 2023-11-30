@@ -2,49 +2,80 @@ from tkinter import *
 from Funciones_Cifrados import cifrado_atbash , cifrado_cesar, leer_arhivo_mensajes
 
 def consultar_mensajes_cifrados(raiz_vieja):
+    parametros = parametros_consultar_mensajes_cifrados()
+    
     global raiz_consulta
     raiz_vieja.destroy()
     raiz_consulta = Tk()
-    raiz_consulta.title("Consultar Mensajes Cifrados")
-    raiz_consulta.geometry("1000x500")
-    raiz_consulta.iconbitmap("icono.ico")
+    raiz_consulta.title(parametros["parametros_raiz"][0])
+    raiz_consulta.geometry(parametros["parametros_raiz"][1])
+    #raiz_consulta.iconbitmap(parametros["parametros_raiz"][2])
     
     with open("mensajes_enviados.csv", "r") as archivo:
         lineas = leer_arhivo_mensajes(archivo)
     mensajes = []
     for linea in lineas:
         destinatario,remitente,tipo_cifrado,mensaje_cifrado = linea
-        if destinatario == "usuario":
-            if tipo_cifrado == "A":
+        if destinatario == parametros["parametros_varios"][0]:
+            if tipo_cifrado == parametros["parametros_varios"][1]:
                 mensaje_descifrado = cifrado_atbash(mensaje_cifrado)
-            elif tipo_cifrado[0] == "C":
+            elif tipo_cifrado[0] == parametros["parametros_varios"][2]:
                 mensaje_descifrado = cifrado_cesar(mensaje_cifrado , -(int(tipo_cifrado[1])))
             else:
-                mensaje_descifrado = "ERROR"
+                mensaje_descifrado = parametros["parametros_varios"][3]
             resultado = (remitente,mensaje_descifrado)
             mensajes.append(resultado)
     mensajes_ordenados = sorted(mensajes , key=lambda x:x[0])
 
-    texto_lista_mensajes = Label(raiz_consulta , text="Lista de Mensajes:")
-    texto_lista_mensajes.config(font=("Arial",15))
-    texto_lista_mensajes.pack(anchor="nw")
+    texto_lista_mensajes = Label(raiz_consulta , text=parametros["parametros_varios"][4])
+    texto_lista_mensajes.config(font=(parametros["fuente_y_posiciones"][0],parametros["fuente_y_posiciones"][1]))
+    texto_lista_mensajes.pack(anchor=parametros["anchors"][1])
     
     for lista in mensajes_ordenados:
-        separador1 = Label(raiz_consulta , text=(f'{("-"*80)}'))
-        separador1.config(font=("Arial",20))
-        separador1.pack(anchor="w")
+        separador1 = Label(raiz_consulta , text=(f'{(parametros["parametros_varios"][5]*80)}'))
+        separador1.config(font=(parametros["fuente_y_posiciones"][0],parametros["fuente_y_posiciones"][2]))
+        separador1.pack(anchor=parametros["anchors"][0])
         
         mensajes_recibidos = Label(raiz_consulta , text=(f'{lista[0]}: {lista[1]}'))
-        mensajes_recibidos.config(font=("Arial",12))
-        mensajes_recibidos.pack(anchor="w")
+        mensajes_recibidos.config(font=(parametros["fuente_y_posiciones"][0],parametros["fuente_y_posiciones"][3]))
+        mensajes_recibidos.pack(anchor=parametros["anchors"][0])
     
-    separador2 = Label(raiz_consulta , text=(f'{("-"*80)}'))
-    separador2.config(font=("Arial",20))
-    separador2.pack(anchor="w")
+    separador2 = Label(raiz_consulta , text=(f'{(parametros["parametros_varios"][5]*80)}'))
+    separador2.config(font=(parametros["fuente_y_posiciones"][0],parametros["fuente_y_posiciones"][2]))
+    separador2.pack(anchor=parametros["anchors"][0])
     
     cantidad_de_lineas = len(mensajes)
-    total_mensajes = Label(raiz_consulta , text=(f'Total de Mensajes: {cantidad_de_lineas}'))
-    total_mensajes.config(font=("Arial",15))
-    total_mensajes.pack(anchor="w")
+    total_mensajes = Label(raiz_consulta , text=(f'{parametros["parametros_varios"][6]} {cantidad_de_lineas}'))
+    total_mensajes.config(font=(parametros["fuente_y_posiciones"][0],parametros["fuente_y_posiciones"][1]))
+    total_mensajes.pack(anchor=parametros["anchors"][0])
     
     raiz_consulta.mainloop()
+    
+def parametros_consultar_mensajes_cifrados():
+    diccionario_parametros_consultar_mensajes_cifrados = {}
+    
+    titulo = "Consultar Mensajes Cifrados"
+    tamaño = "1000x500"
+    icono = "icono.ico"
+    diccionario_parametros_consultar_mensajes_cifrados["parametros_raiz"] = (titulo , tamaño , icono)
+    
+    destinatario = "usuario"
+    tipo_cifrado_A = "A"
+    tipo_cifrado_C = "C"
+    error_mensaje_descifrado = "ERROR"
+    text_texto_lista_mensajes = "Lista de Mensajes:"
+    guion = "-"
+    text_total_mensajes = "Total de Mensajes:"
+    diccionario_parametros_consultar_mensajes_cifrados["parametros_varios"] = (destinatario , tipo_cifrado_A , tipo_cifrado_C , error_mensaje_descifrado , text_texto_lista_mensajes , guion , text_total_mensajes)
+    
+    fuente = "Arial"
+    tamaño_fuente_15 = 15
+    tamaño_fuente_20 = 20
+    tamaño_fuente_12 = 12
+    diccionario_parametros_consultar_mensajes_cifrados["fuente_y_posiciones"] = (fuente , tamaño_fuente_15 , tamaño_fuente_20 , tamaño_fuente_12)
+    
+    anchor_w = "w"
+    anchor_nw = "nw"
+    diccionario_parametros_consultar_mensajes_cifrados["anchors"] = (anchor_w , anchor_nw)
+    
+    return diccionario_parametros_consultar_mensajes_cifrados
