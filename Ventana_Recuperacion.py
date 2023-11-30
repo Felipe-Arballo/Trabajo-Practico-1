@@ -35,12 +35,15 @@ def verificar_usuario(entrada_recuperacion_usuario):
 
     if usuario not in datos.keys():
         resultado = False
-        mostrar_ventana = parametros["mostrar_ventana"]
+        mostrar_ventana = parametros["mostrar_ventana"][0]
+    elif usuario == "":
+        resultado = False
+        mostrar_ventana = parametros["mostrar_ventana"][1]
     else:
         resultado = True
-        mostrar_ventana = f'{parametros["label_pregunta_seleccionada"][0]} {datos[usuario][3]}'
+        mostrar_ventana = f'{parametros["mostrar_ventana"][2]} {datos[usuario][3]}'
 
-    pregunta_seleccionada = Label(raiz_recuperacion , text=mostrar_ventana , name=parametros["label_pregunta_seleccionada"][1])
+    pregunta_seleccionada = Label(raiz_recuperacion , text=mostrar_ventana , name=parametros["label_pregunta_seleccionada"])
     pregunta_seleccionada.pack(pady=parametros["pads"])
 
     entrada_respuesta = Entry(raiz_recuperacion , name=parametros["entry_entrada_respuesta"][0])
@@ -125,11 +128,12 @@ def parametros_verificar_usuario():
     diccionario_parametros_verificar_usuario["pads"] = (pady)
     
     motivo_nombre_no_existe = "La cuenta con ese nombre no existe"
-    diccionario_parametros_verificar_usuario["mostrar_ventana"] = (motivo_nombre_no_existe)
+    motivo_falta_usuario = "Falta ingresar usuario"
+    motivo_usuario_encontrado = "Pregunta:"
+    diccionario_parametros_verificar_usuario["mostrar_ventana"] = (motivo_nombre_no_existe, motivo_falta_usuario, motivo_usuario_encontrado)
     
-    text_pregunta_seleccionada = "Pregunta:"
     name_pregunta_seleccionada = "pregunta_recuperacion"
-    diccionario_parametros_verificar_usuario["label_pregunta_seleccionada"] = (text_pregunta_seleccionada , name_pregunta_seleccionada)
+    diccionario_parametros_verificar_usuario["label_pregunta_seleccionada"] = (name_pregunta_seleccionada)
     
     name_entrada_respuesta = "respuesta_recuperacion"
     bg_entrada_respuesta = "pink"
