@@ -58,38 +58,44 @@ def validar_cesar(raiz2, entrada_clave, entrada_mensaje):
     if not entrada_clave.get().isnumeric():
         mensaje_descifrado = clave_no_numero
         resultado = False
-        devolver_valor(mensaje_descifrado, resultado, raiz2)
-    clave = -int(entrada_clave.get())
-    mensaje = entrada_mensaje.get()
-    if clave > 0:
-        mensaje_descifrado = clave_invalida
-        resultado = False
-    elif not mensaje: 
-        mensaje_descifrado = falta_mensaje
-        resultado = False
+        if raiz2 != "":
+            devolver_valor(mensaje_descifrado, resultado, raiz2)
     else:
-        mensaje_descifrado = cifrado_cesar(mensaje,int(clave))
-        resultado = True
-    devolver_valor(mensaje_descifrado, resultado, raiz2)
+        clave = int(entrada_clave.get())
+        mensaje = entrada_mensaje.get()
+        if clave < 0:
+            mensaje_descifrado = clave_invalida
+            resultado = False
+        elif not mensaje: 
+            mensaje_descifrado = falta_mensaje
+            resultado = False
+        else:
+            mensaje_descifrado = cifrado_cesar(mensaje,int(clave))
+            resultado = True
+        if raiz2 != "":
+            devolver_valor(mensaje_descifrado, resultado, raiz2)
     return resultado
 
 def validar_cesar2(raiz2, entrada_clave, entrada_mensaje): 
     if not entrada_clave.get().isnumeric():
         mensaje_descifrado = clave_no_numero
         resultado = False
-        devolver_valor(mensaje_descifrado, resultado, raiz2)
-    clave = -int(entrada_clave.get())
-    mensaje = entrada_mensaje.get()
-    if clave > 0:
-        mensaje_descifrado = clave_invalida
-        resultado = False
-    elif not mensaje: 
-        mensaje_descifrado = falta_mensaje
-        resultado = False
+        if raiz2 != "":
+            devolver_valor(mensaje_descifrado, resultado, raiz2)
     else:
-        mensaje_descifrado = cifrado_cesar(mensaje,-int(clave))
-        resultado = True
-    devolver_valor(mensaje_descifrado, resultado, raiz2)
+        clave = -int(entrada_clave.get())
+        mensaje = entrada_mensaje.get()
+        if clave > 0:
+            mensaje_descifrado = clave_invalida
+            resultado = False
+        elif not mensaje: 
+            mensaje_descifrado = falta_mensaje
+            resultado = False
+        else:
+            mensaje_descifrado = cifrado_cesar(mensaje,-int(clave))
+            resultado = True
+        if raiz2 != "":
+            devolver_valor(mensaje_descifrado, resultado, raiz2)
     return resultado
 
 def validar_atbash(raiz2, entrada_mensaje):
@@ -100,7 +106,8 @@ def validar_atbash(raiz2, entrada_mensaje):
     else:
         mensaje_descifrado = cifrado_atbash(mensaje)
         resultado = True
-    devolver_valor(mensaje_descifrado, resultado,raiz2)
+    if raiz2 != "":
+        devolver_valor(mensaje_descifrado, resultado,raiz2)
     return resultado
 
 def devolver_valor(resultado, validacion, raiz2):
