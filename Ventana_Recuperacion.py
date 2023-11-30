@@ -27,25 +27,27 @@ def crear_ventana_recuperacion(raiz_ingreso):
     raiz_recuperacion.mainloop()
 
 def verificar_usuario(entrada_recuperacion_usuario):
+    parametros = parametros_verificar_usuario()
+    
     usuario = entrada_recuperacion_usuario.get()
     with open("archivo_datos.csv","r") as archivo:
         datos = leer_archivo_datos(archivo)
 
     if usuario not in datos.keys():
         resultado = False
-        motivo = "La cuenta con ese nombre no existe"
+        motivo = parametros["motivos"]
     else:
         resultado = True
-    pregunta_seleccionada = Label(raiz_recuperacion , text=f"Pregunta: {datos[usuario][3]}" , name="pregunta_recuperacion")
-    pregunta_seleccionada.pack(pady=10)
+    pregunta_seleccionada = Label(raiz_recuperacion , text=f'{parametros["label_pregunta_seleccionada"][0]} {datos[usuario][3]}' , name=parametros["label_pregunta_seleccionada"][1])
+    pregunta_seleccionada.pack(pady=parametros["pads"])
 
-    entrada_respuesta = Entry(raiz_recuperacion , name="respuesta_recuperacion")
-    entrada_respuesta.config(bg="pink")
-    entrada_respuesta.pack(pady=10)
+    entrada_respuesta = Entry(raiz_recuperacion , name=parametros["entry_entrada_respuesta"][0])
+    entrada_respuesta.config(bg=parametros["entry_entrada_respuesta"][1])
+    entrada_respuesta.pack(pady=parametros["pads"])
     
-    boton_respuesta = Button(raiz_recuperacion , text="Verificar respuesta", name="boton_respuesta", command=lambda: verificar_respuesta(entrada_respuesta, usuario))
-    boton_respuesta.config(bg="red")
-    boton_respuesta.pack(pady=10)
+    boton_respuesta = Button(raiz_recuperacion , text=parametros["button_boton_respuesta"][0], name=parametros["button_boton_respuesta"][1], command=lambda: verificar_respuesta(entrada_respuesta, usuario))
+    boton_respuesta.config(bg=parametros["button_boton_respuesta"][2])
+    boton_respuesta.pack(pady=parametros["pads"])
     return resultado
 
 def verificar_respuesta(entrada_respuesta, usuario):
@@ -94,6 +96,30 @@ def parametros_crear_ventana_recuperacion():
     diccionario_parametros_crear_ventana_recuperacion["boton_recuperar_cuenta"] = (text_recuperacion_cuenta , bg_recuperacion_cuenta , width_recuperacion_cuenta , height_recuperacion_cuenta)
     
     return diccionario_parametros_crear_ventana_recuperacion
+
+def parametros_verificar_usuario():
+    diccionario_parametros_verificar_usuario = {}
+    
+    pady = 10
+    diccionario_parametros_verificar_usuario["pads"] = (pady)
+    
+    motivo_nombre_no_existe = "La cuenta con ese nombre no existe"
+    diccionario_parametros_verificar_usuario["motivos"] = (motivo_nombre_no_existe)
+    
+    text_pregunta_seleccionada = "Pregunta:"
+    name_pregunta_seleccionada = "pregunta_recuperacion"
+    diccionario_parametros_verificar_usuario["label_pregunta_seleccionada"] = (text_pregunta_seleccionada , name_pregunta_seleccionada)
+    
+    name_entrada_respuesta = "respuesta_recuperacion"
+    bg_entrada_respuesta = "pink"
+    diccionario_parametros_verificar_usuario["entry_entrada_respuesta"] = (name_entrada_respuesta , bg_entrada_respuesta)
+    
+    text_boton_respuesta = "Verificar respuesta"
+    name_boton_respuesta = "boton_respuesta"
+    bg_boton_respuesta = "red"
+    diccionario_parametros_verificar_usuario["button_boton_respuesta"] = (text_boton_respuesta , name_boton_respuesta , bg_boton_respuesta)
+    
+    return diccionario_parametros_verificar_usuario
 
 def parametros_verificar_respuesta():
     diccionario_parametros_verificar_respuesta = {}
