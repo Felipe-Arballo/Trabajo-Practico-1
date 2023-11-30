@@ -2,7 +2,7 @@ from tkinter import *
 from Funciones_Cifrados import cifrado_atbash, cifrado_cesar, leer_linea
 from Funciones_Validar import validar_atbash, validar_cesar
 
-def crear_ventana_mensajes(raiz_vieja, cifrado):
+def crear_ventana_mensajes(raiz_vieja, cifrado, nombre_usuario):
     parametros = parametros_crear_ventana_mensajes()
     
     raiz_vieja.destroy()
@@ -18,11 +18,11 @@ def crear_ventana_mensajes(raiz_vieja, cifrado):
     entrada_destinatario = Entry(raiz2, bg=parametros["parametros_varios"][1])
     entrada_destinatario.pack(pady=parametros["fuente_y_pads"][2])
 
-    boton_destinatario = Button(raiz2, text=parametros["parametros_varios"][2], command= lambda: verificar_destinatario(cifrado, entrada_destinatario))
+    boton_destinatario = Button(raiz2, text=parametros["parametros_varios"][2], command= lambda: verificar_destinatario(cifrado, entrada_destinatario, nombre_usuario))
     boton_destinatario.pack(pady=parametros["fuente_y_pads"][3])
     raiz2.mainloop()
     
-def verificar_destinatario(cifrado, entrada_destinatario):
+def verificar_destinatario(cifrado, entrada_destinatario, nombre_usuario):
     parametros = parametros_verificar_destinatario()
     resultado = False
     with open("archivo_datos.csv", "r") as archivo:
@@ -44,7 +44,7 @@ def verificar_destinatario(cifrado, entrada_destinatario):
     entrada_mensaje = Entry(raiz2, name=parametros["parametros_varios"][1])
     entrada_mensaje.config(bg=parametros["background"])
 
-    boton_enviar = Button(raiz2, text=parametros["parametros_varios"][6],name=parametros["parametros_varios"][7], command=lambda: enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario))
+    boton_enviar = Button(raiz2, text=parametros["parametros_varios"][6],name=parametros["parametros_varios"][7], command=lambda: enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario, nombre_usuario))
         
     if cifrado == parametros["parametros_varios"][2]:
         texto_clave = Label(raiz2 , text=parametros["parametros_varios"][3],name=parametros["parametros_varios"][4])
@@ -74,7 +74,7 @@ def verificar_destinatario(cifrado, entrada_destinatario):
 
     return resultado
 
-def enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario):
+def enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario, nombre_usuario):
     if entrada_clave != "Atbash":
         tipo_cifrado = "C" + entrada_clave.get()
     else:
@@ -95,7 +95,7 @@ def enviar_mensaje(entrada_mensaje, entrada_clave, entrada_destinatario):
             mensaje_cifrado = cifrado_cesar(mensaje, clave)
         mostrar_ventana = "Mensaje Enviado"
         with open("mensajes_enviados.csv", "a") as archivo_mensajes:
-            archivo_mensajes.write(f'{destinatario},{"usuario"},{tipo_cifrado},{mensaje_cifrado}\n')
+            archivo_mensajes.write(f'{destinatario},{nombre_usuario},{tipo_cifrado},{mensaje_cifrado}\n')
 
     else:
         mostrar_ventana = "Error de validacion"
@@ -150,4 +150,3 @@ def parametros_verificar_destinatario():
     diccionario_parametros_verificar_destinatario["parametros_varios"] = (name_texto_mensaje , name_entrada_mensaje , si_cifrado_es , text_texto_clave , name_texto_clave , name_entrada_clave , text_boton_enviar , name_boton_enviar)
 
     return diccionario_parametros_verificar_destinatario
-
