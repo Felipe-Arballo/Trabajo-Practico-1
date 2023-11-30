@@ -7,6 +7,7 @@ def crear_ventana_principal(parametros):
     raiz1 = Tk()
     raiz1.title(parametros["ventana_principal"][0])
     raiz1.geometry(parametros["ventana_principal"][1])
+    raiz1.resizable(0,0)
     raiz1.iconbitmap(parametros["ventana_principal"][2])
 
     bienvenida = Label(raiz1 , text=parametros["bienvenida_config"][0])
@@ -65,8 +66,7 @@ main()
 
 # # Archivos:
 # Revisar la pregunta del archivo al recuperar la cuenta $ Aumentar el contador de veces que se recupero
-# Al enviar mensaje se debe guardar los datos
-# Mostrar mensaje de error al recuperar cuenta
+
 # # Parametros:
 # Ventana recuperacion(verificar_usuario)
 # Ventana ingresar_usuario
