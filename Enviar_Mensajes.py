@@ -21,7 +21,7 @@ def crear_ventana_mensajes(raiz_vieja, cifrado):
     raiz2.mainloop()
     
 def verificar_destinatario(cifrado, entrada_destinatario):
-    parametros = parametros_verificar_destinatario
+    parametros = parametros_verificar_destinatario()
     
     with open("archivo_datos.csv", "r") as archivo:
         datos = leer_archivo_datos(archivo)
