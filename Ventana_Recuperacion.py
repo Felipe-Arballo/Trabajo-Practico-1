@@ -1,5 +1,5 @@
 from tkinter import *
-from Funciones_Cifrados import leer_archivo_datos
+from Funciones_Cifrados import leer_archivo_datos, leer_linea, leer_arhivo_mensajes
 
 def crear_ventana_recuperacion(raiz_ingreso):
     parametros = parametros_crear_ventana_recuperacion()
@@ -59,8 +59,9 @@ def verificar_usuario(entrada_recuperacion_usuario):
 
 def verificar_respuesta(entrada_respuesta, usuario):
     parametros = parametros_verificar_respuesta()
-    with open("archivo_datos.csv","r") as archivo:
-        datos = leer_archivo_datos(archivo)
+    with open("archivo_datos.csv","r") as archivo_datos:
+        datos = leer_archivo_datos(archivo_datos)
+        
     if datos[usuario][2] != entrada_respuesta.get():
         resultado = False
         mostrar_ventana = parametros["parametros_verif_rta"][0]
@@ -73,9 +74,18 @@ def verificar_respuesta(entrada_respuesta, usuario):
     
     if resultado:
         devolver_clave.pack(pady=parametros["parametros_verif_rta"][3])
+        with open("archivo_datos.csv", 'r', newline='') as file:
+            lineas = file.readlines()
+            for (numero_fila, linea) in enumerate(lineas):
+                if linea.startswith(usuario):
+                    ubicacion = numero_fila
+                    linea_modificada = linea.rstrip("\n").rstrip("\r").split(",")
+        linea_modificada[4] = str(int(linea_modificada[4]) + 1)
+        lineas[ubicacion] = ",".join(linea_modificada) + '\n'
+        with open("archivo_datos.csv", 'w', newline='') as file:
+            file.writelines(lineas)
     else:
         devolver_clave.grid_remove()
-    return resultado
 
 def parametros_crear_ventana_recuperacion():
     diccionario_parametros_crear_ventana_recuperacion = {}
@@ -142,4 +152,5 @@ def parametros_verificar_respuesta():
     diccionario_parametros_verificar_respuesta["parametros_verif_rta"] = (motivo_rta_incorrecta , motivo_su_clave_es , name_devolver_clave , pady)
     
     return diccionario_parametros_verificar_respuesta
+
 
