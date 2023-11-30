@@ -9,6 +9,7 @@ def ingreso_usuario(raiz_vieja):
     raiz_ingreso = Tk()
     raiz_ingreso.title("Identificación para acceso")
     raiz_ingreso.geometry("700x450")
+    raiz_ingreso.resizable(0,0)
     raiz_ingreso.iconbitmap("icono.ico")
 
     label_ingreso_usuario = Label(raiz_ingreso , text="Ingrese su usuario")
@@ -53,9 +54,8 @@ def verificar_cuenta(entrada_usuario,entrada_clave):
     else:
         resultado = True
     if resultado:
-        crear_ventana_cifrados(raiz_ingreso)
+        crear_ventana_cifrados(raiz_ingreso, usuario)
     else:
         validacion = Label(raiz_ingreso,text=motivo, name="verificar_cuenta")
         validacion.pack(pady=5)
     return resultado
-
