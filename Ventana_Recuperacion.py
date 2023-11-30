@@ -9,7 +9,7 @@ def crear_ventana_recuperacion(raiz_ingreso):
     raiz_recuperacion = Tk()
     raiz_recuperacion.title(parametros["ventana_crear_usuario"][0])
     raiz_recuperacion.geometry(parametros["ventana_crear_usuario"][1])
-    #raiz_recuperacion.iconbitmap(parametros["ventana_crear_usuario"][2])
+    raiz_recuperacion.iconbitmap(parametros["ventana_crear_usuario"][2])
 
     label_recuperacion_usuario = Label(raiz_recuperacion , text=parametros["label_recuperar_usuario"][0])
     label_recuperacion_usuario.config(padx=parametros["pads"][0] , pady=parametros["pads"][1] , font=(parametros["label_recuperar_usuario"][1] , parametros["label_recuperar_usuario"][2]))
@@ -35,35 +35,46 @@ def verificar_usuario(entrada_recuperacion_usuario):
 
     if usuario not in datos.keys():
         resultado = False
-        motivo = parametros["motivos"]
+        mostrar_ventana = parametros["mostrar_ventana"]
     else:
         resultado = True
-    pregunta_seleccionada = Label(raiz_recuperacion , text=f'{parametros["label_pregunta_seleccionada"][0]} {datos[usuario][3]}' , name=parametros["label_pregunta_seleccionada"][1])
+        mostrar_ventana = f'{parametros["label_pregunta_seleccionada"][0]} {datos[usuario][3]}'
+
+    pregunta_seleccionada = Label(raiz_recuperacion , text=mostrar_ventana , name=parametros["label_pregunta_seleccionada"][1])
     pregunta_seleccionada.pack(pady=parametros["pads"])
 
     entrada_respuesta = Entry(raiz_recuperacion , name=parametros["entry_entrada_respuesta"][0])
     entrada_respuesta.config(bg=parametros["entry_entrada_respuesta"][1])
-    entrada_respuesta.pack(pady=parametros["pads"])
-    
+        
     boton_respuesta = Button(raiz_recuperacion , text=parametros["button_boton_respuesta"][0], name=parametros["button_boton_respuesta"][1], command=lambda: verificar_respuesta(entrada_respuesta, usuario))
     boton_respuesta.config(bg=parametros["button_boton_respuesta"][2])
-    boton_respuesta.pack(pady=parametros["pads"])
+
+    if resultado:
+        entrada_respuesta.pack(pady=parametros["pads"])
+        boton_respuesta.pack(pady=parametros["pads"])
+    else:
+        entrada_respuesta.grid_remove()
+        boton_respuesta.grid_remove()
     return resultado
 
 def verificar_respuesta(entrada_respuesta, usuario):
     parametros = parametros_verificar_respuesta()
-    
     with open("archivo_datos.csv","r") as archivo:
         datos = leer_archivo_datos(archivo)
     if datos[usuario][2] != entrada_respuesta.get():
         resultado = False
-        motivo = parametros["parametros_verif_rta"][0]
+        mostrar_ventana = parametros["parametros_verif_rta"][0]
     else:
         resultado = True
-        motivo = (f'{parametros["parametros_verif_rta"][1]} {datos[usuario][1]}')
+        mostrar_ventana = (f'{parametros["parametros_verif_rta"][1]} {datos[usuario][1]}')
             
-    devolver_clave = Label(raiz_recuperacion, text=motivo, name=parametros["parametros_verif_rta"][2])
+    devolver_clave = Label(raiz_recuperacion, text=mostrar_ventana, name=parametros["parametros_verif_rta"][2])
     devolver_clave.pack(pady=parametros["parametros_verif_rta"][3])
+    
+    if resultado:
+        devolver_clave.pack(pady=parametros["parametros_verif_rta"][3])
+    else:
+        devolver_clave.grid_remove()
     return resultado
 
 def parametros_crear_ventana_recuperacion():
@@ -104,7 +115,7 @@ def parametros_verificar_usuario():
     diccionario_parametros_verificar_usuario["pads"] = (pady)
     
     motivo_nombre_no_existe = "La cuenta con ese nombre no existe"
-    diccionario_parametros_verificar_usuario["motivos"] = (motivo_nombre_no_existe)
+    diccionario_parametros_verificar_usuario["mostrar_ventana"] = (motivo_nombre_no_existe)
     
     text_pregunta_seleccionada = "Pregunta:"
     name_pregunta_seleccionada = "pregunta_recuperacion"
@@ -131,3 +142,4 @@ def parametros_verificar_respuesta():
     diccionario_parametros_verificar_respuesta["parametros_verif_rta"] = (motivo_rta_incorrecta , motivo_su_clave_es , name_devolver_clave , pady)
     
     return diccionario_parametros_verificar_respuesta
+
